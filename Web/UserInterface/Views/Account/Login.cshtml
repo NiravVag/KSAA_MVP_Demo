@@ -17,14 +17,19 @@
                             <form data-toggle="validator" role="form" action="#" method="post" id="LoginForm">
                                 <div class="form-group">
                                     <label class="control-label mb-10" asp-for="Email"></label>
-                                    <input type="text" class="form-control" data-required-error="Username is required" required asp-for="Email" placeholder="Enter username">
+                                    <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-email"></i></div>
+                                    <input type="text" class="form-control" data-required-error="Email is required" placeholder="Enter Email" required asp-for="Email">
+                                </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="pull-left control-label mb-10" asp-for="Password">Password</label>
-                                    @*<a class="capitalize-font txt-primary block mb-10 pull-right font-12" href="../HTML/forgot-password.html">forgot password ?</a>*@
-                                    @* <div class="clearfix"></div>*@
-                                    <input type="password" class="form-control" data-required-error="Password is required" asp-for="Password" required placeholder="Enter pwd">
+                                    <label class="control-label mb-10" asp-for="Password"></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="icon-lock"></i></div>
+                                        <input type="password" class="form-control" data-required-error="Password is required" placeholder="Enter Password" required asp-for="Password">
+                                    </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
 

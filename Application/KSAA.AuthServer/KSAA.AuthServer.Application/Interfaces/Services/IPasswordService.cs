@@ -8,9 +8,9 @@ namespace KSAA.AuthServer.ApiServices.Application.Interfaces.Services
 {
     public interface IPasswordService
     {
-        void CreatePassword(string password);
+        void CreatePassword(string password, out string passwordHash, out string passwordSalt);
 
-        bool VerifyPassword(string password);
+        bool VerifyPassword(string password, byte[] storedHash, byte[] storedSalt);
 
         string Base64Decode(string password);
 
