@@ -1,16 +1,20 @@
-﻿using KSAA.User.Domain.Entities;
-using KSAA.UserInterface.Web.Models.Account;
+﻿using KSAA.UserInterface.Web.Models.Account;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Security.Claims;
-using System.Text;
+using IdentityModel.Client;
 
 namespace KSAA.UserInterface.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IConfiguration _configuration;
+
+        public AccountController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public IActionResult Login()
         {
             return View();
@@ -20,21 +24,25 @@ namespace KSAA.UserInterface.Web.Controllers
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7280/");
-            var requestBody = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
-            var httpResponse = await httpClient.PostAsync("/api/Authentication/authenticate", requestBody);
-            var responseString = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
+
+            var httpResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest()
             {
-                var result = JsonConvert.DeserializeObject<Response<AuthenticationResponse>>(responseString);
-                var claims = new List<Claim>
+                Address = _configuration["AuthServer:Url"]+"connect/token",
+                ClientId = _configuration["AuthServer:ClientId"],
+                ClientSecret = _configuration["AuthServer:ClientSecret"],
+                UserName = model.Email,
+                Password = model.Password
+            });
+            if (!httpResponse.IsError)
+            {
+                var userResponse = await httpClient.GetUserInfoAsync(new UserInfoRequest()
                 {
-                    new Claim(ClaimTypes.Name, result.Data.Email),
-                    new Claim("FullName", result.Data.FirstName+" "+result.Data.LastName)
-                };
+                    Address = _configuration["AuthServer:Url"]+ "connect/userinfo",
+                    Token = httpResponse.AccessToken
+                });
 
                 var claimsIdentity = new ClaimsIdentity(
-                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    userResponse.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var authProperties = new AuthenticationProperties
                 {
@@ -68,8 +76,7 @@ namespace KSAA.UserInterface.Web.Controllers
             }
             else
             {
-                var result = JsonConvert.DeserializeObject<ErrorResponse>(responseString);
-                return BadRequest(result);
+                return BadRequest(httpResponse.Json);
             }
 
         }

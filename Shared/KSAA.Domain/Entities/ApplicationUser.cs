@@ -1,0 +1,31 @@
+﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KSAA.Domain.Entities
+{
+    public class ApplicationUser : IdentityUser<long>
+    {
+        public virtual string? UserCode { get; set; }
+        public virtual string? FirstName { get; set; }
+        public virtual string? LastName { get; set; }
+        public virtual int UserType { get; set; }
+        public virtual int Company { get; set; }
+        public virtual IsActive IsActive { get; set; }
+        public virtual string? IP { get; set; }
+        public virtual string? BrowserCase { get; set; }
+        public virtual int? CreatedBy { get; set; }
+        public virtual DateTime CreatedOn { get; set; }
+        public virtual int? ModifiedBy { get; set; }
+        public virtual DateTime? ModifiedOn { get; set; }
+    }
+    public enum IsActive
+    {
+        Active = 1,
+        InActive = 2,
+        Delete = 3
+    }
+}
