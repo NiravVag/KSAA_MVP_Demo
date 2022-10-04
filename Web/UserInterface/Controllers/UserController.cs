@@ -12,7 +12,7 @@ namespace KSAA.UserInterface.Web.Controllers
         // GET: Users
         public async Task<IActionResult> UserList()
         {
-            IEnumerable<UserViewModel> users = null;
+            IEnumerable<UserListModel> users = null;
 
             using (var client = new HttpClient())
             {
@@ -28,14 +28,19 @@ namespace KSAA.UserInterface.Web.Controllers
                     //readTask.Wait();
                     Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(readTask);
                     var users1 = myDeserializedClass.data.ToList();
-                  users = users1.Select(x => new UserViewModel
+                  users = users1.Select(x => new UserListModel
                   { 
                       Id=x.id,
                       FirstName=x.firstName,
                       LastName=x.lastName,
                       Email=x.email,
-                      Password= (string)x.password,
-                  });
+                      //Password= (string)x.password,
+                      UserType=x.userType,
+                      UserTypeName=x.userTypeName,
+                      CompanyName=x.companyName,
+                      Company = x.company,
+                      IsActive=x.isActive,
+                  }).Where(x => x.IsActive != (int)IsActive.Delete);
 
                     //users = readTask;
                     // users = (IEnumerable<UserViewModel>?)myDeserializedClass;
@@ -46,7 +51,7 @@ namespace KSAA.UserInterface.Web.Controllers
                 {
                     //log response status here..
 
-                    users = Enumerable.Empty<UserViewModel>();
+                    users = Enumerable.Empty<UserListModel>();
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
@@ -61,7 +66,7 @@ namespace KSAA.UserInterface.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UserAdd([FromBody] UserViewModel userViewModel)
+        public async Task<IActionResult> UserAdd(UserViewModel userViewModel)
         {
             using (var client = new HttpClient())
             {
@@ -82,6 +87,85 @@ namespace KSAA.UserInterface.Web.Controllers
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
             return View(userViewModel);
+        }
+
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            UserViewModel users = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7146/");
+                //HTTP GET
+                var responseTask = await client.GetAsync("api/User/GetUserById?id=" + id.ToString());
+                //responseTask.Wait();
+
+                var result = responseTask;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    //var data = JsonConvert.DeserializeObject<UserViewModel>(readTask);
+                    //readTask.Wait();
+
+                    Root1 myDeserializedClass = JsonConvert.DeserializeObject<Root1>(readTask);
+                    var users1 = myDeserializedClass.data;
+                    users =  new UserViewModel
+                    {
+                        Id = users1.id,
+                        FirstName = users1.firstName,
+                        LastName = users1.lastName,
+                        Email = users1.email,
+                        Password = (string)users1.password,
+                        UserType = users1.userType,
+                        Company = users1.company,
+                    };
+
+                    //users = data;
+                }
+            }
+            return View("~/Views/User/UserUpdate.cshtml", users);
+        }
+
+        public async Task<IActionResult> UpdateUser(UserViewModel userViewModel)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7146/");
+                var requestContent = new StringContent("{}", Encoding.UTF8, "application/json");
+                //HTTP POST
+                var responseTask = await client.PutAsJsonAsync("api/User/UpdateUserById", userViewModel);
+                //responseTask.Wait();
+
+                var result = responseTask;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("UserList", userViewModel);
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+            return RedirectToAction("UserList", userViewModel);
+        }
+
+        public async Task<ActionResult> Delete(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7146/");
+
+                //HTTP DELETE
+                var deleteTask = await client.DeleteAsync("api/User/Delete?id=" + id.ToString());
+                //deleteTask.Wait();
+
+                var result = deleteTask;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("UserList");
+                }
+            }
+
+            return RedirectToAction("UserList");
         }
     }
 }

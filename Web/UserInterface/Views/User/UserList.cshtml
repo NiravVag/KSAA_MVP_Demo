@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KSAA.User.Application.DTOs.User.UserViewModel>
+﻿@model IEnumerable<KSAA.User.Application.DTOs.User.UserListModel>
 
 <!-- Row -->
 <div class="row">
@@ -39,8 +39,8 @@
                                                             <th>First Name</th>
                                                             <th>Last Name</th>
                                                             <th>Email</th>
-                                                            @*<th>User Type</th>
-                                                            <th>Compnay</th>*@
+                                                            <th>User Type</th>
+                                                            <th>Compnay</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -57,14 +57,14 @@
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Email)
                                                                 </td>
-                                                                @*<td>
-                                                                    @Html.DisplayFor(modelItem => item.UserType)
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.UserTypeName)
                                                                 </td>
                                                                 <td>
-                                                                    @Html.DisplayFor(modelItem => item.Company)
-                                                                </td>*@
-                                                                <td class="text-nowrap"><a href="#" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a> 
-                                                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a> </td>
+                                                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                                                </td>
+                                                                <td class="text-nowrap"><a href="~/User/GetUserById/@item.Id" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a> 
+                                                                    <a href="~/User/Delete/@item.Id" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a> </td>
                                                             </tr>
                                                         }
                                                     </tbody>
@@ -74,8 +74,8 @@
                                                             <th>First Name</th>
                                                             <th>Last Name</th>
                                                             <th>Email</th>
-                                                            @*<th>User Type</th>
-                                                            <th>Compnay</th>*@
+                                                            <th>User Type</th>
+                                                            <th>Compnay</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>

@@ -16,6 +16,8 @@ namespace KSAA.DAL
          : base(options)
         {
         }
+        //DbSet<UserType> tbl_UserType { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -57,7 +59,15 @@ namespace KSAA.DAL
             {
                 b.ToTable("RoleClaims");
             });
+            builder.Entity<UserType>(b =>
+            {
+                b.ToTable("tbl_UserType");
+            });
 
+            builder.Entity<Company>(b =>
+            {
+                b.ToTable("tbl_Company");
+            });
 
         }
     }
