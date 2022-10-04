@@ -213,7 +213,7 @@
 					},
 					error: function(jqXHR, textStatus, error){
 						$.toast({
-							text: jqXHR.responseJSON.message,
+							text: jqXHR.responseJSON.error_description=="invalid_username_or_password" ? "Invalid user name or password":"Internal Server Error",
 							position: 'top-right',
 							loaderBg: '#f8b32d',
 							icon: 'error',

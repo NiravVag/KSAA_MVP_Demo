@@ -9,7 +9,9 @@ $(document).ready(function(){
 		 "bFilter": false,
 		 "bLengthChange": false,
 		 "bPaginate": false,
-		 "bInfo": false,
+			"bInfo": false,
+			"destroy": true,
+			"searching": false
 		});
 	}
 });
