@@ -1,0 +1,308 @@
+﻿@model KSAA.User.Application.DTOs.User.UserViewModel
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div>
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <a href="~/User/UserList" class="btn btn-primary btn-outline fancy-button btn-0" style="color: black; float: right;">Manage Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-account mr-10"></i>Add User Form Details</h6>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-wrap">
+                                <form class="form-horizontal" data-toggle="validator" method="post" asp-action="UserAdd" id="frmUserAdd" name="frmUserAdd">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                            <input type="text" class="form-control" asp-for="FirstName" id="txtFirstName" placeholder="Enter First Name" data-required-error="First Name is required" required>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                                                            <input type="text" class="form-control" asp-for="Email" id="txtEmail" placeholder="Enter Email" data-required-error="Email is required" required>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!-- /Row -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                            <input type="text" class="form-control" asp-for="LastName" id="txtLastName" placeholder="Enter Last Name" data-required-error="Last Name is required" required>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*@if (Model.Id >= 0)
+                                            {*@
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                                            <input type="password" class="form-control" placeholder="Enter Password" asp-for="Password" data-required-error="Password must contain: Minimum 8 characters atleast 1 UpperCase Alphabet, 1 LowerCase Alphabet, 1 Number and 1 Special Character" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            @*}*@
+
+                                        </div>
+
+                                        <!-- /Row -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <select class="selectpicker" id="UserType" asp-for="UserType" data-style="form-control btn-default btn-outline">
+                                                                <option value=""> ----- Select User Type ----- </option>
+                                                                <option value="1">Internal</option>
+                                                                <option value="2">Customer</option>
+                                                                <option value="3">Consultant</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*@if (Model.Id >= 0)
+                                            {*@
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                                            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#Password" data-match-error="Whoops, these don't match" placeholder="Enter Confirm Password" required>
+                                                            @*<input type="password" class="form-control" onChange="checkPasswordMatch();" placeholder="Enter Confirm Password" asp-for="Password" data-required-error="Confirm Password is required" required="">*@
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            @*}*@
+
+                                        </div>
+
+                                        <!-- /Row -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <select class="selectpicker" id="Company" asp-for="Company" data-style="form-control btn-default btn-outline">
+                                                                <option value=""> ----- Select Company ----- </option>
+                                                                <option value="1">Mustard</option>
+                                                                <option value="2">Ketchup</option>
+                                                                <option value="3">Relish</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <select class="selectpicker" id="RoleId" asp-for="RoleId" data-style="form-control btn-default btn-outline">
+                                                                <option value=""> ----- Select User Role ----- </option>
+                                                                <option value="1">Super Administrator</option>
+                                                                <option value="2">Client Administrator</option>
+                                                                <option value="3">Client Employee</option>
+                                                                <option value="4">Consultant</option>
+                                                                <option value="5">Executive</option>
+                                                                <option value="6">Administrator</option>
+                                                                <option value="7">Client Executive</option>
+                                                                <option value="8">Viewer</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <div class="form-actions mt-10">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button type="submit" class="btn btn-success  mr-10">Submit</button>
+                                                            @*<button type="button" id="btncancel" class="btn btn-default">cancel</button>*@
+                                                            <a href="~/User/UserList" class="btn btn-default" id="btnCancel">Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Row -->
+@section scripts{
+
+    <!-- Bootstrap Core JavaScript -->
+    @*<script src="~/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <script src="~/vendors/bower_components/bootstrap-validator/dist/validator.js"></script>
+
+    <script type="text/javascript">
+        debugger;
+        $("form[name='frmUserAdd']"){
+            ignore: [],
+                errorElement: "div",
+                    errorPlacement: function (error, element) {
+                        error.appendTo(element.parent());
+                    },
+            submitHandler: function () {
+                var obj = {
+                    FirstName: $("#txtFirstName").val(),
+                    LastName: $("#txtLastName").val(),
+                    Email: $("#txtEmailAddress").val(),
+                    Password: $("#Password").val(),
+                    //Password: $("#Password").val(),
+                    UserType: $("#UserType").val(),
+                    Company: $("#Company").val(),
+                    RoleId: $("#RoleId").val()
+                };
+
+                //$.ajax({
+                //    type: "POST",
+                //    url: "" + $('#hdnPath').val() + "/User/UserAdd/",
+                //    data: JSON.stringify(obj),
+                //    contentType: "application/json; charset=utf-8",
+                //    dataType: "json",
+                //    cache: false,
+                //    beforeSend: function () {
+                //        addRemoveLoader(false);
+                //    },
+                //    success: function (responses) {
+                //        if (responses.success) {
+                //            //toastr.success(responses.message);
+                //            Swal.fire({
+                //                title: "Success!", text: "Your user details stored successfully!", type: "success", confirmButtonColor: "#556ee6", allowOutsideClick: !1
+                //            }).then(function (t) {
+                //                if (t.value) {
+                //                    close();
+                //                    //window.location.href = $('#hdnPath').val() + "/User";
+                //                }
+                //            });
+                //        }
+                //        else {
+                //            toastr.error(responses.message);
+                //        }
+                //    },
+                //    error: function (response) {
+                //        toastr.error("Error");
+                //    },
+                //    complete: function () {
+                //        addRemoveLoader(true);
+                //    },
+                //});
+            }
+        };
+
+        $('body').on("click", "#btnCancel", function(event) {
+            close();
+        });
+
+        //function validate() {
+
+        //    var user = document.getElementById("e").value;
+        //    var user2 = document.getElementById("e");
+        //    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+        //    if (re.test(user)) {
+        //        alert("Strong Password");
+        //        return true;
+        //    }
+        //    else {
+        //        user2.style.border = "red solid 3px";
+        //        return false;
+        //    }
+        //}
+
+        function checkPasswordMatch() {
+            debugger;
+            var password = $("#Password").val();
+            var confirmPassword = $("#Password").val();
+
+            if (password != confirmPassword) {
+                $("#msg").html("Passwords do not match!").css("color", "red");
+                //$("btnSubmit").has(has('button[type=submit]:checked:enabled'));
+                $("#btnSubmit").prop("disabled", true);
+            }
+            else {
+                $("#msg").html("Passwords match.").css("color", "green");
+                $("#btnSubmit").prop("disabled", false);
+            }
+        }
+
+                        //$(document).ready(function() {
+                        //    if ('@Model.UserType' != null && '@Model.UserType' != "") {
+                        //        $('#UserType').val('@Model.UserType');
+                        //        $('#UserType').select2().trigger('change');
+                        //    }
+
+                        //    if ('@Model.Company' != null && '@Model.Company' != "") {
+                        //        $('#Company').val('@Model.Company');
+                        //        $('#Company').select2().trigger('change');
+                        //    }
+
+                        //};
+
+    </script>
+}
