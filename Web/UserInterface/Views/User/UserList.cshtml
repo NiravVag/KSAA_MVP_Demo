@@ -41,6 +41,7 @@
                                                             <th>Email</th>
                                                             <th>User Type</th>
                                                             <th>Compnay</th>
+                                                            <th>User Role</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -63,6 +64,9 @@
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.CompanyName)
                                                                 </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.UserRoleName)
+                                                                </td>
                                                                 <td class="text-nowrap"><a href="~/User/GetUserById/@item.Id" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a> 
                                                                     <a href="~/User/Delete/@item.Id" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a> </td>
                                                             </tr>
@@ -76,6 +80,7 @@
                                                             <th>Email</th>
                                                             <th>User Type</th>
                                                             <th>Compnay</th>
+                                                            <th>User Role</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>

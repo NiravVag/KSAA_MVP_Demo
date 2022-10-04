@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace KSAA.DAL
 {
-    public class ApplicationDBContext : IdentityDbContext<ApplicationUser, ApplicationRole, long>
+    public class ApplicationDBContext : IdentityDbContext<ApplicationUser, ApplicationRole, long, IdentityUserClaim<long>, ApplicationUserRole, IdentityUserLogin<long>, IdentityRoleClaim<long>, IdentityUserToken<long>>
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
          : base(options)
@@ -36,9 +36,11 @@ namespace KSAA.DAL
                 b.ToTable("Roles");
             });
 
-            builder.Entity<IdentityUserRole<long>>(b =>
+            builder.Entity<ApplicationUserRole>(b =>
             {
                 b.ToTable("UserRoles");
+                b.HasOne(x => x.Role).WithMany(x => x.UserRoles).HasForeignKey(x => x.RoleId);
+                b.HasOne(x => x.User).WithMany(x => x.UserRoles).HasForeignKey(x => x.UserId);
             });
 
             builder.Entity<IdentityUserToken<long>>(b =>

@@ -71,19 +71,28 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @*<!--/span-->
+                                            <!--/span-->
                                             <div class="col-md-6">
-                                            <div class="form-group">
-                                            <div class="control-label col-md-3"></div>
-                                            <div class="col-md-9">
-                                            <div class="input-group">
-                                            <div class="input-group-addon"><i class="ti-lock"></i></div>
-                                            <input type="password" class="form-control" id="txtPassword" asp-for="Password" required>
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <select class="selectpicker" id="RoleId" asp-for="RoleId" data-style="form-control btn-default btn-outline">
+                                                                <option value=""> ----- Select User Role ----- </option>
+                                                                <option value="1">Super Administrator</option>
+                                                                <option value="2">Client Administrator</option>
+                                                                <option value="3">Client Employee</option>
+                                                                <option value="4">Consultant</option>
+                                                                <option value="5">Executive</option>
+                                                                <option value="6">Administrator</option>
+                                                                <option value="7">Client Executive</option>
+                                                                <option value="8">Viewer</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <!--/span-->*@
+                                            <!--/span-->
                                         </div>
 
                                         <!-- /Row -->
@@ -182,7 +191,8 @@
                     LastName: $("#txtLastName").val(),
                     Email: $("#txtEmailAddress").val(),
                     UserType: $("#UserType").val(),
-                    Company: $("#Company").val()
+                    Company: $("#Company").val(),
+                    RoleId: $("#RoleId").val()
                 };
 
             }
@@ -201,6 +211,11 @@
                 //    if ('@Model.Company' != null && '@Model.Company' != "") {
                 //        $('#Company').val('@Model.Company');
                 //        $('#Company').select2().trigger('change');
+                //    }
+
+                //    if ('@Model.RoleId' != null && '@Model.RoleId' != "") {
+                //        $('#RoleId').val('@Model.RoleId');
+                //        $('#RoleId').select2().trigger('change');
                 //    }
 
                 //};

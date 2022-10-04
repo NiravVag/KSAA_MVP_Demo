@@ -34,12 +34,12 @@ namespace KSAA.UserInterface.Web.Controllers
                       FirstName=x.firstName,
                       LastName=x.lastName,
                       Email=x.email,
-                      //Password= (string)x.password,
                       UserType=x.userType,
                       UserTypeName=x.userTypeName,
                       CompanyName=x.companyName,
                       Company = x.company,
                       IsActive=x.isActive,
+                      UserRoleName = x.userRoleName,
                   }).Where(x => x.IsActive != (int)IsActive.Delete);
 
                     //users = readTask;
@@ -118,6 +118,7 @@ namespace KSAA.UserInterface.Web.Controllers
                         Password = (string)users1.password,
                         UserType = users1.userType,
                         Company = users1.company,
+                        RoleId = users1.roleId
                     };
 
                     //users = data;

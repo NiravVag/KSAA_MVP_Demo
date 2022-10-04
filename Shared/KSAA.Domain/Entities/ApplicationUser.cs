@@ -10,6 +10,10 @@ namespace KSAA.Domain.Entities
 {
     public class ApplicationUser : IdentityUser<long>
     {
+        public ApplicationUser()
+        {
+            UserRoles = new HashSet<ApplicationUserRole>();
+        }
         public virtual string? UserCode { get; set; }
         public virtual string? FirstName { get; set; }
         public virtual string? LastName { get; set; }
@@ -26,6 +30,8 @@ namespace KSAA.Domain.Entities
         public virtual DateTime? ModifiedOn { get; set; }
         public virtual UserType UserTypeNavigation { get; set; }
         public virtual Company CompanyNavigation { get; set; }
+
+        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
     }
     public enum IsActive
     {

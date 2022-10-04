@@ -147,21 +147,26 @@
                                                 </div>
                                             </div>
 
-                                            @*<div class="col-md-6">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="control-label col-md-3"></div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <select class="selectpicker" id="UserRoles" asp-for="UserRoles" data-style="form-control btn-default btn-outline">
-                                                                <option value=""> ----- Select Role ----- </option>
-                                                                <option value="1">Mustard</option>
-                                                                <option value="2">Ketchup</option>
-                                                                <option value="3">Relish</option>
+                                                            <select class="selectpicker" id="RoleId" asp-for="RoleId" data-style="form-control btn-default btn-outline">
+                                                                <option value=""> ----- Select User Role ----- </option>
+                                                                <option value="1">Super Administrator</option>
+                                                                <option value="2">Client Administrator</option>
+                                                                <option value="3">Client Employee</option>
+                                                                <option value="4">Consultant</option>
+                                                                <option value="5">Executive</option>
+                                                                <option value="6">Administrator</option>
+                                                                <option value="7">Client Executive</option>
+                                                                <option value="8">Viewer</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>*@
+                                            </div>
                                             <!--/span-->
                                         </div>
                                         <div class="form-actions mt-10">
@@ -211,7 +216,8 @@
                     Password: $("#Password").val(),
                     //Password: $("#Password").val(),
                     UserType: $("#UserType").val(),
-                    Company: $("#Company").val()
+                    Company: $("#Company").val(),
+                    RoleId: $("#RoleId").val()
                 };
 
                 //$.ajax({
@@ -255,7 +261,7 @@
         });
 
         //function validate() {
-  
+
         //    var user = document.getElementById("e").value;
         //    var user2 = document.getElementById("e");
         //    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -285,18 +291,18 @@
             }
         }
 
-                //$(document).ready(function() {
-                //    if ('@Model.UserType' != null && '@Model.UserType' != "") {
-                //        $('#UserType').val('@Model.UserType');
-                //        $('#UserType').select2().trigger('change');
-                //    }
+                        //$(document).ready(function() {
+                        //    if ('@Model.UserType' != null && '@Model.UserType' != "") {
+                        //        $('#UserType').val('@Model.UserType');
+                        //        $('#UserType').select2().trigger('change');
+                        //    }
 
-                //    if ('@Model.Company' != null && '@Model.Company' != "") {
-                //        $('#Company').val('@Model.Company');
-                //        $('#Company').select2().trigger('change');
-                //    }
+                        //    if ('@Model.Company' != null && '@Model.Company' != "") {
+                        //        $('#Company').val('@Model.Company');
+                        //        $('#Company').select2().trigger('change');
+                        //    }
 
-                //};
+                        //};
 
     </script>
 }

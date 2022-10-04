@@ -9,5 +9,11 @@ namespace KSAA.Domain.Entities
 {
     public class ApplicationRole : IdentityRole<long>
     {
+        public ApplicationRole()
+        {
+            UserRoles = new HashSet<ApplicationUserRole>();
+        }
+        //public virtual string? UserRoleName { get; set; }
+        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } 
     }
 }
