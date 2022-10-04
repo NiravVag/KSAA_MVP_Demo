@@ -1,0 +1,45 @@
+using KSAA.Master.ApiServices.Extensions;
+using KSAA.Master.ApiServices.Middlewares;
+using KSAA.Master.Application;
+using KSAA.Master.Application.Interfaces.Services;
+using KSAA.Master.Infrastructure.Persistence;
+using KSAA.Master.Infrastructure.Shared.Services;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+
+builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+
+builder.Services.AddJwtTokenAuthentication(builder.Configuration);
+builder.Services.AddApiVersioningExtension();
+//builder.Services.AddSwaggerConfiguration();
+
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer().AddApplicationLayer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+app.MapControllers();
+
+app.Run();
