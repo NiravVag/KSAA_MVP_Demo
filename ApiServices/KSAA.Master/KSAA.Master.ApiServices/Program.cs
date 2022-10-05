@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
-
-builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+builder.Services.AddScoped<IDocumentTypeService , DocumentTypeService>(); 
+builder.Services.AddScoped<IPlantCodeService , PlantCodeService>(); 
 
 builder.Services.AddJwtTokenAuthentication(builder.Configuration);
 builder.Services.AddApiVersioningExtension();
