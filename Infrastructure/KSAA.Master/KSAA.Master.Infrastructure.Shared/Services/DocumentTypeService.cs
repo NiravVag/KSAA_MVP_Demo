@@ -2,7 +2,7 @@
 using KSAA.Domain.Entities;
 using KSAA.Domain.Interfaces.Repositories;
 using KSAA.Master.Application.DTOs.Master;
-using KSAA.Master.Application.Features.Master.Commands;
+using KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -51,8 +51,8 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<DocumentTypeViewModel> EditDocumentType(UpdateDocumentTypeCommand command)
         {
             var applicationDocumentType = _mapper.Map<UpdateDocumentTypeCommand>(command);
-            applicationDocumentType.ModifiedOn = DateTime.Now;
             applicationDocumentType.IsActive = Domain.Entities.IsActive.Active;
+            applicationDocumentType.ModifiedOn = DateTime.Now;
             var applicationUser = await _documentTypeRepositoryAsync.FindById(applicationDocumentType.Id);
             _mapper.Map(command, applicationUser);
 

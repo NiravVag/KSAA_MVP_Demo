@@ -1,5 +1,5 @@
-﻿using KSAA.Master.Application.Features.Master.Commands;
-using KSAA.Master.Application.Features.Master.Queries;
+﻿using KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand;
+using KSAA.Master.Application.Features.Master.Queries.DocumetTypeQueries;
 using KSAA.Master.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

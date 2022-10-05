@@ -1,5 +1,5 @@
 ﻿using KSAA.Master.Application.DTOs.Master;
-using KSAA.Master.Application.Features.Master.Commands;
+using KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand;
 using System;
 using System.Collections.Generic;
 using System.Linq;

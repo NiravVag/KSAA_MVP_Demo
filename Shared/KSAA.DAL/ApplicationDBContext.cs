@@ -18,6 +18,7 @@ namespace KSAA.DAL
         }
         //DbSet<UserType> tbl_UserType { get; set; }
         DbSet<DocumentType> DocumentTypes { get; set; }
+        DbSet<PlantCode> PlantCodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -77,6 +78,10 @@ namespace KSAA.DAL
                 b.ToTable("tbl_Document_Type");
             });
 
+            builder.Entity<PlantCode>(b =>
+            {
+                b.ToTable("tbl_Plant_Code");
+            });
         }
     }
 }

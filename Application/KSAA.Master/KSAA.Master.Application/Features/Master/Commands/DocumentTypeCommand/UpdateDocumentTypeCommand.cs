@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSAA.Master.Application.Features.Master.Commands
+namespace KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand
 {
     public class UpdateDocumentTypeCommand : IRequest<Response>
     {

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSAA.Master.Application.Features.Master.Queries
+namespace KSAA.Master.Application.Features.Master.Queries.DocumetTypeQueries
 {
     public class GetDocumentTypeByIdQuery : IRequest<Response<DocumentTypeViewModel>>
     {

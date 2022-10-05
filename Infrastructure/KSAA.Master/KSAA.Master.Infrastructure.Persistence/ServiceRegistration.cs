@@ -26,6 +26,7 @@ namespace KSAA.Master.Infrastructure.Persistence
 
             services.AddScoped(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+            services.AddScoped<IPlantCodeService, PlantCodeService>();
 
             #endregion Repositories
         }
