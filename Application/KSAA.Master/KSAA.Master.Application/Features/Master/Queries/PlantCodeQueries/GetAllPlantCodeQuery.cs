@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSAA.PlantCodeE.Application.Features.PlantCode.Queries
+namespace KSAA.Master.Application.Features.Master.Queries.PlantCodeQueries
 {
     public class GetAllPlantCodeQuery : IRequest<Response<IEnumerable<PlantCodeViewModel>>>
     {

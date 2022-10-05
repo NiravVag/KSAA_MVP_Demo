@@ -1,6 +1,6 @@
 ﻿using KSAA.Master.Application.Features.Master.Commands.PlantCodeCommand;
+using KSAA.Master.Application.Features.Master.Queries.PlantCodeQueries;
 using KSAA.Master.Application.Interfaces.Services;
-using KSAA.PlantCodeE.Application.Features.PlantCode.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KSAA.Master.ApiServices.Controllers.V1

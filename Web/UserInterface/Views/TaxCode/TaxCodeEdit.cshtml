@@ -1,0 +1,190 @@
+﻿@model KSAA.Master.Application.DTOs.Master.TaxCodeViewModel
+
+<div class="row">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <h6 class="txt-dark capitalize-font">Edit Tax Code</h6>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-wrap">
+                            <form class="form-horizontal" data-toggle="validator" asp-action="TaxCodeEdit" role="form" method="post" id="frmTaxCodeEdit">
+                                <!--/Row-->
+                                @Html.HiddenFor(x=>x.Id)
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                        <input class="form-control" data-required-error="TaxCode is required" placeholder="Enter Tax Code" required asp-for="Tax_Code">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="ti-user"></i>
+                                                            </div>
+                                                            <input class="form-control" data-required-error="SubtaxName is required" placeholder="Enter Address" required asp-for="SubtaxName">
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="ti-user"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="TaxRate is required" placeholder="Enter TaxRate" required asp-for="TaxRate">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="ti-user"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="Type is required" placeholder="Enter Type" required asp-for="Type">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="IP is required" placeholder="Enter IP" required asp-for="IP">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="BrowserCase is required" placeholder="Enter BrowserCase" required asp-for="BrowserCase">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- /Row -->
+                                <div class="form-actions mt-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit"
+                                                            class="btn btn-success  mr-10">
+                                                        Submit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+        <script>
+
+            $('#frmTaxCodeEdit').validator().on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                    // handle the invalid form...
+                } else 
+                {
+
+                    $.ajax({
+                        type: "PUT",
+                        url: "" + $('#hdnPath').val() + "/TaxCode/TaxCodeEdit/",
+                        data: JSON.stringify(obj),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        cache: false,
+                        beforeSend: function () {
+                            addRemoveLoader(false);
+                        },
+                        success: function (responses) {
+                            if (responses.success) {
+                                //toastr.success(responses.message);
+                                Swal.fire({
+                                    title: "Success!", text: "Your PlantCode details stored successfully!", type: "success", confirmButtonColor: "#556ee6", allowOutsideClick: !1
+                                }).then(function (t) {
+                                    if (t.value) {
+                                        close();
+                                        //window.location.href = $('#hdnPath').val() + "/User";
+                                    }
+                                });
+                            }
+                            else {
+                                toastr.error(responses.message);
+                            }
+                        },
+                        error: function (response) {
+                            toastr.error("Error");
+                        },
+                        complete: function () {
+                            addRemoveLoader(true);
+                        },
+                    });
+                }
+            });
+
+        </script>
+}
