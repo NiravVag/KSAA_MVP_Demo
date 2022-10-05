@@ -17,6 +17,7 @@ namespace KSAA.DAL
         {
         }
         //DbSet<UserType> tbl_UserType { get; set; }
+        DbSet<DocumentType> DocumentTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -69,6 +70,11 @@ namespace KSAA.DAL
             builder.Entity<Company>(b =>
             {
                 b.ToTable("tbl_Company");
+            });
+
+            builder.Entity<DocumentType>(b =>
+            {
+                b.ToTable("tbl_Document_Type");
             });
 
         }

@@ -1,0 +1,180 @@
+﻿@model KSAA.Master.Application.DTOs.Master.DocumentTypeViewModel
+<div class="row">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <h6 class="txt-dark capitalize-font">Edit DocumentType</h6>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-wrap">
+                            <form class="form-horizontal" data-toggle="validator" asp-action="DocomentTypeEdit" role="form" method="post" id="frmDocumentTypeEdit">
+                                <!--/Row-->
+                                @Html.HiddenFor(x=>x.Id)
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                        <input class="form-control" data-required-error="BillType is required" id="txtBillType" placeholder="Enter BillType" required asp-for="BillType">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="ti-user"></i>
+                                                            </div>
+                                                            <input class="form-control" data-required-error="TransactionType is required" id="txtTransactionType" placeholder="Enter TransactionType" required asp-for="TransactionType">
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/Row-->
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                        <input class="form-control" data-required-error="OurSoftwareProcessing is required" id="txtOurSoftwareProcessing" placeholder="Enter OurSoftwareProcessing" required asp-for="OurSoftwareProcessing">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="control-label col-md-3"></div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="ti-user"></i>
+                                                            </div>
+                                                            <input class="form-control" data-required-error="IP is required" id="txtIP" placeholder="Enter IP" required asp-for="IP">
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/Row-->
+                                        </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="BrowserCase is required" id="txtBrowserCase" placeholder="Enter BrowserCase" required asp-for="BrowserCase">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <!-- /Row -->
+                                <div class="form-actions mt-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit"
+                                                            class="btn btn-success  mr-10">
+                                                        Submit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+            <script>
+
+        $('#frmDocumentTypeEdit').validator().on('submit', function (e) {
+
+
+
+                    if (e.isDefaultPrevented()) {
+                        // handle the invalid form...
+                    } else 
+                    {
+                    e.preventDefault();
+                    $.ajax({
+                    type: "PUT",
+                    url: "" + $('#hdnPath').val() + "/DocumentType/DocomentTypeEdit/",
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    cache: false,
+                    beforeSend: function () {
+                        addRemoveLoader(false);
+                    },
+                    success: function (responses) {
+                        if (responses.success) {
+                            //toastr.success(responses.message);
+                            Swal.fire({
+                                title: "Success!", text: "Your DocumentType details Updated successfully!", type: "success", confirmButtonColor: "#556ee6", allowOutsideClick: !1
+                            }).then(function (t) {
+                                if (t.value) {
+                                    close();
+                                    //window.location.href = $('#hdnPath').val() + "/User";
+                                }
+                            });
+                        }
+                        else {
+                            toastr.error(responses.message);
+                        }
+                    },
+                    error: function (response) {
+                        toastr.error("Error");
+                    },
+                    complete: function () {
+                        addRemoveLoader(true);
+                    },
+                    });
+                    }
+                }
+
+            </script>
+}
