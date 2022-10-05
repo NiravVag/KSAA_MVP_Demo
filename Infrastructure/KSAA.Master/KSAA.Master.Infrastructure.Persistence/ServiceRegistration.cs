@@ -20,7 +20,9 @@ namespace KSAA.Master.Infrastructure.Persistence
         {
             string connectionString = configuration.GetConnectionString("MSSQLConnection");
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
-
+            services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+            services.AddScoped<IPlantCodeService , PlantCodeService>();
+            services.AddScoped<ITaxCodeService, TaxCodeServices>();
 
             #region Repositories
 

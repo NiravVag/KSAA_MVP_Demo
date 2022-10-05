@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KSAA.Master.Application.Interfaces.Repositories
 {
-    public interface IPlantCodeRepositoryAsync : IGenericRepositoryAsync<PlantCode>
+    public interface ITaxCodeRepositoryAsyn : IGenericRepositoryAsync<TaxCode>
     {
     }
 }
