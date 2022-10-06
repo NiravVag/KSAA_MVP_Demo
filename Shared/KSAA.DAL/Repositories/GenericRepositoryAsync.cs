@@ -43,9 +43,10 @@ namespace KSAA.DAL.Repositories
 
         }
 
-        public virtual IQueryable<T> GetAllAsync()
+        public virtual async Task<List<T>> GetAllAsync()
         {
-            return _contex.Set<T>();
+            var entity = await _contex.Set<T>().ToListAsync();
+            return entity;
         }
 
         public virtual async Task<IQueryable<T>> GetPagedResponseAsync(int pageNumber, int pageSize)
