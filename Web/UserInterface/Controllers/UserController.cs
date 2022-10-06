@@ -118,6 +118,7 @@ namespace KSAA.UserInterface.Web.Controllers
                         Password = (string)users1.password,
                         UserType = users1.userType,
                         Company = users1.company,
+                        IsActive = users1.isActive,
                         RoleId = users1.roleId
                     };
 
