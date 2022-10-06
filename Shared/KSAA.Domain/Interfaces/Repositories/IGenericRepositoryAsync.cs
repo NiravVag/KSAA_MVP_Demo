@@ -10,10 +10,10 @@ namespace KSAA.Domain.Interfaces.Repositories
 {
     public interface IGenericRepositoryAsync<T> where T : BaseEntity
     {
-        public IQueryable<T> GetAllAsync();
+        public Task<List<T>> GetAllAsync();
         Task<IQueryable<T>> FindByCondition(Expression<Func<T, bool>> expression);
 
-        public Task<T> FindById(long id);
+        public Task<T> FindById(long Id);
 
         public Task<IQueryable<T>> GetPagedResponseAsync(int pageNumber, int pageSize);
 

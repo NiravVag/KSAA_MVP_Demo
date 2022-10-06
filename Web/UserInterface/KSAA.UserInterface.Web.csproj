@@ -3960,6 +3960,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ApiServices\KSAA.Master\KSAA.Master.ApiServices\KSAA.Master.ApiServices.csproj" />
     <ProjectReference Include="..\..\ApiServices\KSAA.User\KSAA.User.ApiServices.csproj" />
   </ItemGroup>
 

@@ -10,6 +10,4 @@ namespace KSAA.Domain.Common
     {
         public long Id { get; set; }
     }
-
-
 }
