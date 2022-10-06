@@ -1,0 +1,272 @@
+﻿@model KSAA.Master.Application.DTOs.Master.PlantCodeViewModel
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div>
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <a href="~/PlantCode/PlantCodeList" class="btn btn-primary btn-outline fancy-button btn-0" style="color: black; float: right;">PlantCode List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <h6 class="txt-dark capitalize-font">Add Plant Code</h6>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-wrap">
+                            <form class="form-horizontal" data-toggle="validator" asp-action="PlantCodeAdd" role="form" method="post" id="frmPlantCodeAdd">
+                                <!--/Row-->
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-barcode"></i></div>
+                                                        <input class="form-control" data-required-error="PlantCode is required" placeholder="Enter Plant Code" required asp-for="Plant_Code">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                                                        <textarea class="form-control" data-required-error="Address is required" placeholder="Enter Address" required asp-for="Address"></textarea>
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-location-arrow"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="Location is required" placeholder="Enter Location" required asp-for="Location">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa  fa-credit-card"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="GSTRegistrationNo is required" placeholder="Enter GSTRegistrationNo" required asp-for="GSTRegistrationNo">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-universal-access"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="Type Of Unit is required" placeholder="Enter Type Of Unit" required asp-for="TypeOfUnit">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-product-hunt"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="ProductsManufactured is required" placeholder="Enter ProductsManufactured" required asp-for="ProductsManufactured">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fa fa-product-hunt "></i></div>
+                                                    <input class="form-control" data-required-error="ProductsTraded is required" placeholder="Enter ProductsTraded" required asp-for="ProductsTraded">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="ServicesProvided is required" placeholder="Enter ServicesProvided" required asp-for="ServicesProvided">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="IP is required" placeholder="Enter IP" required asp-for="IP">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="BrowserCase is required" placeholder="Enter BrowserCase" required asp-for="BrowserCase">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="RegistrationType is required" placeholder="Enter RegistrationType" required asp-for="RegistrationType">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Row -->
+                                <div class="form-actions mt-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit"
+                                                            class="btn btn-success  mr-10">
+                                                        Submit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        $('#frmPlantCodeAdd').validator().on('submit', function (e) 
+        {
+            if (e.isDefaultPrevented()) {
+                // handle the invalid form...
+            } else 
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "" + $('#hdnPath').val() + "/PlantCode/PlantCodeAdd/",
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    cache: false,
+                    beforeSend: function () {
+                        addRemoveLoader(false);
+                    },
+                    success: function (responses) {
+                        if (responses.success) {
+                            //toastr.success(responses.message);
+                            Swal.fire({
+                                title: "Success!", text: "Your PlantCode details stored successfully!", type: "success", confirmButtonColor: "#556ee6", allowOutsideClick: !1
+                            }).then(function (t) {
+                                if (t.value) {
+                                    close();
+                                    //window.location.href = $('#hdnPath').val() + "/User";
+                                }
+                            });
+                        }
+                        else {
+                            toastr.error(responses.message);
+                        }
+                    },
+                    error: function (response) {
+                        toastr.error("Error");
+                    },
+                    complete: function () {
+                        addRemoveLoader(true);
+                    },
+                });
+            }
+        });
+
+    </script>
+}

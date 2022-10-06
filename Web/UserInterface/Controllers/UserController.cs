@@ -40,7 +40,7 @@ namespace KSAA.UserInterface.Web.Controllers
                       Company = x.company,
                       IsActive=x.isActive,
                       UserRoleName = x.userRoleName,
-                  }).Where(x => x.IsActive != (int)IsActive.Delete);
+                  }).Where(x => x.IsActive != IsActive.Delete);
 
                     //users = readTask;
                     // users = (IEnumerable<UserViewModel>?)myDeserializedClass;
