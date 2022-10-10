@@ -1,0 +1,75 @@
+﻿@model IEnumerable<KSAA.User.Application.DTOs.Role.RoleListModel>
+
+<!-- Row -->
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div>
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <a href="~/Role/RoleAdd" class="btn btn-primary btn-outline fancy-button btn-0" style="color: black; float: right;">Add Role</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-account mr-10"></i>List of Role</h6>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <div class="panel-heading">
+                                    <div class="pull-left"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                                <table id="datable_1" class="table table-hover display pb-30">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Role Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        @foreach (var item in Model) {
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                                </td>
+                                                                <td class="text-nowrap"><a href="~/Role/GetRoleById/@item.Id" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a> 
+                                                                    <a href="~/Role/Delete/@item.Id" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a> </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Role Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Row -->

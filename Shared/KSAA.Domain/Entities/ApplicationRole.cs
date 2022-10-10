@@ -14,6 +14,19 @@ namespace KSAA.Domain.Entities
             UserRoles = new HashSet<ApplicationUserRole>();
         }
         //public virtual string? UserRoleName { get; set; }
-        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } 
+        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
+
+        public virtual IsActive IsActive { get; set; }
+        public virtual int? CreatedBy { get; set; }
+        public virtual DateTime CreatedOn { get; set; }
+        public virtual int? ModifiedBy { get; set; }
+        public virtual DateTime? ModifiedOn { get; set; }
     }
+
+    //public enum IsActive
+    //{
+    //    Active = 1,
+    //    InActive = 2,
+    //    Delete = 3
+    //}
 }
