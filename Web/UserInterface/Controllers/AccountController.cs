@@ -27,7 +27,7 @@ namespace KSAA.UserInterface.Web.Controllers
 
             var httpResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest()
             {
-                Address = _configuration["AuthServer:Url"]+"connect/token",
+                Address = _configuration["AuthServer:Url"] + "connect/token",
                 ClientId = _configuration["AuthServer:ClientId"],
                 ClientSecret = _configuration["AuthServer:ClientSecret"],
                 UserName = model.Email,
@@ -37,12 +37,18 @@ namespace KSAA.UserInterface.Web.Controllers
             {
                 var userResponse = await httpClient.GetUserInfoAsync(new UserInfoRequest()
                 {
-                    Address = _configuration["AuthServer:Url"]+ "connect/userinfo",
+                    Address = _configuration["AuthServer:Url"] + "connect/userinfo",
                     Token = httpResponse.AccessToken
                 });
+                var claims = new List<Claim>();
+                claims.AddRange(userResponse.Claims);
+                var roleClaim = claims.FirstOrDefault(x => x.Type == "role");
+                if (roleClaim != null)
+                    claims.Add(new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", roleClaim.Value));
+
 
                 var claimsIdentity = new ClaimsIdentity(
-                    userResponse.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                  claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 var authProperties = new AuthenticationProperties
                 {

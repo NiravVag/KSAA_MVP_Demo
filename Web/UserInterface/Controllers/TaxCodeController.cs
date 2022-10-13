@@ -172,4 +172,9 @@ namespace KSAA.UserInterface.Web.Controllers
 
         public T Data { get; set; }
     }
+
+    public class ErrorResponse
+    {
+        public string Message { get; set; }
+    }
 }

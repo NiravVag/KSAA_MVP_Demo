@@ -13,6 +13,12 @@ using KSAA.AuthServer.Quickstart.UI;
 using Microsoft.AspNetCore.Identity;
 using KSAA.DAL;
 using KSAA.Domain.Entities;
+using Microsoft.Extensions.Options;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Linq;
+using IdentityModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace KSAA.AuthServer
 {
@@ -62,9 +68,9 @@ namespace KSAA.AuthServer
                     options.EnableTokenCleanup = true;
                 })
                 .AddAspNetIdentity<ApplicationUser>();
-
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
+            
 
             services.AddAuthentication()
                 .AddGoogle(options =>
@@ -95,6 +101,28 @@ namespace KSAA.AuthServer
             {
                 endpoints.MapDefaultControllerRoute();
             });
+        }
+    }
+
+    public class ClaimsFactory : UserClaimsPrincipalFactory<ApplicationUser>
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public ClaimsFactory(
+            UserManager<ApplicationUser> userManager,
+            IOptions<IdentityOptions> optionsAccessor) : base(userManager, optionsAccessor)
+        {
+            _userManager = userManager;
+        }
+
+        protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
+        {
+            var identity = await base.GenerateClaimsAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
+
+            identity.AddClaims(roles.Select(role => new Claim(JwtClaimTypes.Role, role)));
+
+            return identity;
         }
     }
 }
