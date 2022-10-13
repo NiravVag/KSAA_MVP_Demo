@@ -10,6 +10,6 @@ namespace KSAA.Domain.Common
     {
         public T Data { get; set; }
         public bool succeeded { get; set; }
-        public object message { get; set; }
+        public string message { get; set; }
     }
 }

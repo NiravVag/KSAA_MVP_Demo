@@ -2,8 +2,10 @@
 using KSAA.DAL;
 using KSAA.Domain.Entities;
 using KSAA.User.Application.DTOs.User;
+using KSAA.User.Application.Exceptions;
 using KSAA.User.Application.Features.Users.Commands;
 using KSAA.User.Application.Interfaces.Services;
+using KSAA.User.Application.Wrappers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,29 +40,38 @@ namespace KSAA.User.Infrastructure.Shared.Services
             applicationUser.ModifiedBy = 0;
             applicationUser.ModifiedOn = DateTime.Now;
 
+            //check Email Exists
+            var isEmailExist = await IsEmailExists(command.Email);
+            if (isEmailExist)
+            {
+                throw new ForbiddenException("Error: Email address already exists in database!");
+            }
+
             var identityResult = await _userManager.CreateAsync(applicationUser, command.Password);
             if (identityResult.Succeeded)
             {
                 if (command.RoleId > 0)
                 {
-                    //_roleManager.RoleExistsAsync("");
-                    //_roleManager.CreateAsync();
-                    //_roleManager.FindByIdAsync();
-                    //_roleManager.UpdateAsync();
-                    //_roleManager.DeleteAsync();
-                    //_roleManager.Roles.ToList();
-
                     var role = await _roleManager.FindByIdAsync(command.RoleId.ToString());
                     await _userManager.AddToRoleAsync(applicationUser, role.Name);
                 }
             }
-            //if (identityResult.Succeeded == false)
-            //{
-            //    var message = identityResult.Errors.FirstOrDefault();
-            //    return message;
-            //}
 
             return _mapper.Map<UserViewModel>(applicationUser);
+        }
+
+        public async Task<bool> IsEmailExists(string Email)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(Email);
+
+                return user != null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task DeleteUser(DeleteUserCommand command)
@@ -128,7 +139,7 @@ namespace KSAA.User.Infrastructure.Shared.Services
                     CompanyName = y.CompanyNavigation.CompanyName,
                     IsActive = y.IsActive,
                     UserRoleName = string.Join(", ", y.UserRoles.Select(x => x.Role.Name).ToList())
-                }).Where(x => x.IsActive != IsActive.Delete).ToListAsync();
+                }).Where(x => x.IsActive != IsActive.Delete).OrderByDescending(x => x.Id).ToListAsync();
 
             return _mapper.Map<List<UserListModel>>(users);
         }

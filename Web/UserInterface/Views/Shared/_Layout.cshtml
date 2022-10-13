@@ -426,7 +426,7 @@
 
     <!-- Init JavaScript -->
     <script src="~/dist/js/init.js"></script>
-    <script src="~/dist/js/dashboard5-data.js"></script>
+    @*<script src="~/dist/js/dashboard5-data.js"></script>*@
 
     <!-- Fancy-Buttons CSS -->
     <link href="~/dist/css/fancy-buttons.css" rel="stylesheet" type="text/css">
@@ -494,7 +494,7 @@
     <!-- Form Flie Upload Data JavaScript -->
     <script src="~/dist/js/form-file-upload-data.js"></script>
 
-    <script src="~/dist/js/dashboard5-data.js"></script>
+    @*<script src="~/dist/js/dashboard5-data.js"></script>*@
 
     <script src="~/dist/js/echart-data.js"></script>
 
@@ -548,15 +548,17 @@
     <script src="~/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
     <!-- Bootstrap Daterangepicker JavaScript -->
     <script src="~/vendors/bower_components/dropify/dist/js/dropify.min.js"></script>
-
+   
 
     <!-- Bootstrap Core JavaScript -->
     <script src="~/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="~/vendors/bower_components/bootstrap-validator/dist/validator.js"></script>
-
-    @section Scripts{
+     <!-- Toast JavaScript -->
+    <script src="~/vendors/bower_components/jquery-toast-plugin/src/jquery.toast.js"></script>
+    
+ @section Scripts{
 
 
         <script type="text/javascript">
@@ -703,8 +705,10 @@
             })(jQuery);
 
         </script>
-    }
+
+        }
 
         @await RenderSectionAsync("Scripts", required: false)
     </body>
     </html>
+    

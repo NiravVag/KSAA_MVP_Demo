@@ -97,7 +97,7 @@ namespace KSAA.User.Infrastructure.Shared.Services
                     CreatedOn = y.CreatedOn,
                     ModifiedBy = y.ModifiedBy,
                     ModifiedOn = y.ModifiedOn,
-                }).Where(x => x.IsActive != IsActive.Delete).ToListAsync();
+                }).Where(x => x.IsActive != IsActive.Delete).OrderByDescending(x => x.Id).ToListAsync();
 
             return _mapper.Map<List<RoleListModel>>(roles);
         }

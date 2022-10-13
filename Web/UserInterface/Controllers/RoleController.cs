@@ -1,12 +1,14 @@
 ﻿using KSAA.Domain.Common;
 using KSAA.Domain.Entities;
 using KSAA.User.Application.DTOs.Role;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace KSAA.UserInterface.Web.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class RoleController : Controller
     {
         // GET: Roles
@@ -63,8 +65,18 @@ namespace KSAA.UserInterface.Web.Controllers
                 var result = postTask;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("RoleList");
+                    //return RedirectToAction("RoleList");
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<RoleViewModel>>(readTask);
+
+                    roleViewModel = data.Data;
                 }
+                //else
+                //{
+                //    var error = JsonConvert.DeserializeObject<ErrorResponse>(await postTask.Content.ReadAsStringAsync());
+
+                //    return BadRequest(error);
+                //}
             }
 
             ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
@@ -109,12 +121,20 @@ namespace KSAA.UserInterface.Web.Controllers
                 var result = responseTask;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("RoleList", roleViewModel);
+                    //return RedirectToAction("RoleList", roleViewModel);
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<RoleViewModel>>(readTask);
+
+                    return Json(data);
+                }
+                else
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<ErrorResponse>(readTask);
+                    return BadRequest(data);
                 }
             }
 
-            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-            return RedirectToAction("RoleList", roleViewModel);
         }
 
         public async Task<ActionResult> Delete(int id)

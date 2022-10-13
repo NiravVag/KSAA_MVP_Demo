@@ -1,4 +1,5 @@
-﻿using KSAA.Domain.Entities;
+﻿using KSAA.Domain.Common;
+using KSAA.Domain.Entities;
 using KSAA.User.Application.DTOs.User;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace KSAA.UserInterface.Web.Controllers
             {
                 client.BaseAddress = new Uri("https://localhost:7146/");
                 var requestContent = new StringContent("{}", Encoding.UTF8, "application/json");
-                var responseTask = await client.PostAsync("api/User/GetAllUsers",requestContent);
+                var responseTask = await client.PostAsync("api/User/GetAllUsers", requestContent);
                 //responseTask.Wait();
 
                 var result = responseTask;
@@ -26,26 +27,27 @@ namespace KSAA.UserInterface.Web.Controllers
                 {
                     var readTask = await result.Content.ReadAsStringAsync();
                     //readTask.Wait();
-                    Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(readTask);
-                    var users1 = myDeserializedClass.data.ToList();
-                  users = users1.Select(x => new UserListModel
-                  { 
-                      Id=x.id,
-                      FirstName=x.firstName,
-                      LastName=x.lastName,
-                      Email=x.email,
-                      UserType=x.userType,
-                      UserTypeName=x.userTypeName,
-                      CompanyName=x.companyName,
-                      Company = x.company,
-                      IsActive=x.isActive,
-                      UserRoleName = x.userRoleName,
-                  }).Where(x => x.IsActive != IsActive.Delete);
 
-                    //users = readTask;
-                    // users = (IEnumerable<UserViewModel>?)myDeserializedClass;
-                    // var listuser = JsonSerializer.Deserialize<UserViewModel>(readTask);
-                    //users = (IEnumerable<UserViewModel>?)listuser;
+                    //  Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(readTask);
+                    //  var users1 = myDeserializedClass.data.ToList();
+                    //users = users1.Select(x => new UserListModel
+                    //{ 
+                    //    Id=x.id,
+                    //    FirstName=x.firstName,
+                    //    LastName=x.lastName,
+                    //    Email=x.email,
+                    //    UserType=x.userType,
+                    //    UserTypeName=x.userTypeName,
+                    //    CompanyName=x.companyName,
+                    //    Company = x.company,
+                    //    IsActive=x.isActive,
+                    //    UserRoleName = x.userRoleName,
+                    //}).Where(x => x.IsActive != IsActive.Delete);
+
+                    var data = JsonConvert.DeserializeObject<CommonResponse<List<UserListModel>>>(readTask);
+
+                    users = data.Data;
+
                 }
                 else //web api sent error response 
                 {
@@ -80,7 +82,17 @@ namespace KSAA.UserInterface.Web.Controllers
                 var result = postTask;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("UserList");
+                    //return RedirectToAction("UserList");
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<UserViewModel>>(readTask);
+
+                    userViewModel = data.Data;
+                }
+                else
+                {
+                    var error = JsonConvert.DeserializeObject<ErrorResponse>(await postTask.Content.ReadAsStringAsync());
+                    
+                    return BadRequest(error);
                 }
             }
 
@@ -107,22 +119,24 @@ namespace KSAA.UserInterface.Web.Controllers
                     //var data = JsonConvert.DeserializeObject<UserViewModel>(readTask);
                     //readTask.Wait();
 
-                    Root1 myDeserializedClass = JsonConvert.DeserializeObject<Root1>(readTask);
-                    var users1 = myDeserializedClass.data;
-                    users =  new UserViewModel
-                    {
-                        Id = users1.id,
-                        FirstName = users1.firstName,
-                        LastName = users1.lastName,
-                        Email = users1.email,
-                        Password = (string)users1.password,
-                        UserType = users1.userType,
-                        Company = users1.company,
-                        IsActive = users1.isActive,
-                        RoleId = users1.roleId
-                    };
+                    //Root1 myDeserializedClass = JsonConvert.DeserializeObject<Root1>(readTask);
+                    //var users1 = myDeserializedClass.data;
+                    //users =  new UserViewModel
+                    //{
+                    //    Id = users1.id,
+                    //    FirstName = users1.firstName,
+                    //    LastName = users1.lastName,
+                    //    Email = users1.email,
+                    //    Password = (string)users1.password,
+                    //    UserType = users1.userType,
+                    //    Company = users1.company,
+                    //    IsActive = users1.isActive,
+                    //    RoleId = users1.roleId
+                    //};
 
-                    //users = data;
+                    var data = JsonConvert.DeserializeObject<CommonResponse<UserViewModel>>(readTask);
+
+                    users = data.Data;
                 }
             }
             return View("~/Views/User/UserUpdate.cshtml", users);
@@ -141,12 +155,21 @@ namespace KSAA.UserInterface.Web.Controllers
                 var result = responseTask;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("UserList", userViewModel);
+                    //return RedirectToAction("UserList", userViewModel);
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<UserViewModel>>(readTask);
+
+                    return Json(data);
+                }
+
+                else
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<ErrorResponse>(readTask);
+                    return BadRequest(data);
                 }
             }
 
-            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-            return RedirectToAction("UserList", userViewModel);
         }
 
         public async Task<ActionResult> Delete(int id)

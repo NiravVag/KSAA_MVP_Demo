@@ -36,6 +36,7 @@
                                                 <table id="datable_1" class="table table-hover display pb-30">
                                                     <thead>
                                                         <tr>
+                                                            <th hidden>Id</th>
                                                             <th>Role Name</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -44,6 +45,9 @@
                                                     <tbody>
                                                         @foreach (var item in Model) {
                                                             <tr>
+                                                                <td hidden>
+                                                                    @Html.DisplayFor(modelItem => item.Id)
+                                                                </td>
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Name)
                                                                 </td>
@@ -55,6 +59,7 @@
 
                                                     <tfoot>
                                                         <tr>
+                                                            <th hidden>Id</th>
                                                             <th>Role Name</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -73,3 +78,13 @@
     </div>
 </div>
 <!-- /Row -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        debugger;
+        $('#datable_1').DataTable({
+            "order": [[0, "desc"]]
+        });
+    });
+</script>

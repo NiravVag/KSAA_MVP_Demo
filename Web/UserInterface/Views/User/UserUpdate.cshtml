@@ -36,7 +36,7 @@
                                                     <div class="col-md-9">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                                                            <input type="text" class="form-control" asp-for="FirstName" id="txtFirstName" placeholder="Enter First Name" data-required-error="First Name is required" required>
+                                                            <input type="text" class="form-control" asp-for="FirstName" id="FirstName" placeholder="Enter First Name" data-required-error="First Name is required" required>
                                                         </div>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -49,7 +49,7 @@
                                                     <div class="col-md-9">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                                                            <input type="text" class="form-control" asp-for="Email" id="txtEmail" placeholder="Enter Email" data-required-error="Email is required" required>
+                                                            <input type="text" class="form-control" asp-for="Email" id="Email" placeholder="Enter Email" data-required-error="Email is required" required>
                                                         </div>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -65,7 +65,7 @@
                                                     <div class="col-md-9">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                                                            <input type="text" class="form-control" asp-for="LastName" id="txtLastName" placeholder="Enter Last Name" data-required-error="Last Name is required" required>
+                                                            <input type="text" class="form-control" asp-for="LastName" id="LastName" placeholder="Enter Last Name" data-required-error="Last Name is required" required>
                                                         </div>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -159,52 +159,64 @@
 </div>
 <!-- /Row -->
 @section scripts{
-    <!-- Bootstrap Core JavaScript -->
-    @*<script src="~/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>*@
+   <!-- Bootstrap Core JavaScript -->
     <script src="~/vendors/bower_components/bootstrap-validator/dist/validator.js"></script>
 
     <script type="text/javascript">
-        $("form[name='frmUserUpdate']"){
-            ignore: [],
-            errorElement: "div",
-            errorPlacement: function(error, element) {
-                error.appendTo(element.parent());
-            },
-            submitHandler: function() {
-                var obj = {
-                    Id: $("#hdnId").val(),
-                    IsActive: $("#hdnIsActive").val(),
-                    FirstName: $("#txtFirstName").val(),
-                    LastName: $("#txtLastName").val(),
-                    Email: $("#txtEmailAddress").val(),
-                    UserType: $("#UserType").val(),
-                    Company: $("#Company").val(),
-                    RoleId: $("#RoleId").val()
-                };
-
-            }
-        };
+        $(document).ready(function() {
+            $('#frmUserUpdate').validator().on('submit', function(e) {
+                if (e.isDefaultPrevented()) {
+                    // handle the invalid form...
+                }
+                else {
+                    var obj = {
+                        Id: $("#hdnId").val(),
+                        IsActive: $("#hdnIsActive").val(),
+                        FirstName: $("#FirstName").val(),
+                        Email: $("#Email").val(),
+                        LastName: $("#LastName").val(),
+                        Password: $("#Password").val(),
+                        UserType: $("#UserType").val(),
+                        Company: $("#Company").val(),
+                        RoleId: $("#RoleId").val()
+                    };
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/User/UpdateUser',
+                        method: 'POST',
+                        data: obj,
+                        success: function(data) {
+                            $.toast({
+                                text: data.message,
+                                position: 'top-right',
+                                loaderBg: '#f8b32d',
+                                icon: 'success',
+                                hideAfter: 3500,
+                                stack: 6,
+                            })
+                            setTimeout(function() {
+                                window.location.href = "/User/UserList"
+                            }, 1500);
+                        },
+                        error: function(jqXHR, textStatus, error) {
+                            $.toast({
+                                text: jqXHR.responseJSON.message,
+                                position: 'top-right',
+                                loaderBg: '#f8b32d',
+                                icon: 'error',
+                                hideAfter: 3500,
+                                stack: 6
+                            });
+                        }
+                    });
+                }
+            });
+        });
 
         $('body').on("click", "#btnCancel", function(event) {
             close();
         });
 
-                //$(document).ready(function() {
-                //    if ('@Model.UserType' != null && '@Model.UserType' != "") {
-                //        $('#UserType').val('@Model.UserType');
-                //        $('#UserType').select2().trigger('change');
-                //    }
-
-                //    if ('@Model.Company' != null && '@Model.Company' != "") {
-                //        $('#Company').val('@Model.Company');
-                //        $('#Company').select2().trigger('change');
-                //    }
-
-                //    if ('@Model.RoleId' != null && '@Model.RoleId' != "") {
-                //        $('#RoleId').val('@Model.RoleId');
-                //        $('#RoleId').select2().trigger('change');
-                //    }
-
-                //};
+                
     </script>
 }
