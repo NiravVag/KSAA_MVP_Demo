@@ -20,10 +20,10 @@ namespace KSAA.Master.Application.Features.Commands.TaxCodeCommand
         public virtual string? Tax_Code { get; set; }
         [Required]
         public virtual string? Type { get; set; }
-        [Required]
+        /*[Required]
         public virtual string? IP { get; set; }
         [Required]
-        public virtual string? BrowserCase { get; set; }
+        public virtual string? BrowserCase { get; set; }*/
 
     }
 

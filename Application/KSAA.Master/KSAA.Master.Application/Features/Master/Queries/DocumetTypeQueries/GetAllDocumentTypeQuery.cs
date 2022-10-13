@@ -15,12 +15,12 @@ namespace KSAA.Master.Application.Features.Master.Queries.DocumetTypeQueries
     {
     }
 
-    public class GetAllUsersQueryHandler : IRequestHandler<GetAllDocumentTypeQuery, Response<IEnumerable<DocumentTypeViewModel>>>
+    public class GetAllDocumentTypeQueryHandler : IRequestHandler<GetAllDocumentTypeQuery, Response<IEnumerable<DocumentTypeViewModel>>>
     {
         private readonly IDocumentTypeService _documentTypeService;
         private readonly IMapper _mapper;
 
-        public GetAllUsersQueryHandler(IDocumentTypeService documentTypeService, IMapper mapper)
+        public GetAllDocumentTypeQueryHandler(IDocumentTypeService documentTypeService, IMapper mapper)
         {
             _documentTypeService = documentTypeService;
             _mapper = mapper;

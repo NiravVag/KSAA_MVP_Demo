@@ -16,7 +16,8 @@ namespace KSAA.Master.Infrastructure.Persistence.Repositories.Master.Mappings
             Lazy(true);
             Id(x => x.Id);
             Property(x => x.BillType, map => { map.NotNullable(true); map.Length(50); });
-            Property(x => x.TransactionType, map => { map.NotNullable(true); map.Length(50); });
+            Property(x => x.Document_Code, map => { map.NotNullable(true); map.Length(50); });
+            Property(x => x.Document_Type, map => { map.NotNullable(true); map.Length(50); });
             Property(x => x.OurSoftwareProcessing, map => { map.NotNullable(true); map.Length(50); });
             Property(x => x.IP, map => { map.NotNullable(true); map.Length(50); });
             Property(x => x.BrowserCase, map => { map.NotNullable(true); map.Length(50); });

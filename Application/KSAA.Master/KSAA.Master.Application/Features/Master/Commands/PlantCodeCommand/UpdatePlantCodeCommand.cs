@@ -24,8 +24,8 @@ namespace KSAA.Master.Application.Features.Master.Commands.PlantCodeCommand
         public string? ProductsTraded { get; set; }
         public string? ServicesProvided { get; set; }
         public string? RegistrationType { get; set; }
-        public string? IP { get; set; }
-        public string? BrowserCase { get; set; }
+        /*public string? IP { get; set; }
+        public string? BrowserCase { get; set; }*/
         public DateTime? ModifiedOn { get; set; }
         public IsActive IsActive { get; set; }
     }

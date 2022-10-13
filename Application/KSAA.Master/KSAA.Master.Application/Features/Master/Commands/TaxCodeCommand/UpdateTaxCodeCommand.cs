@@ -19,8 +19,8 @@ namespace KSAA.Master.Application.Features.Commands.TaxCodeCommand
         public string? SubtaxName { get; set; }
         public int TaxRate { get; set; }
         public string? Type { get; set; }
-        public string? IP { get; set; }
-        public string? BrowserCase { get; set; }
+        /*public string? IP { get; set; }
+        public string? BrowserCase { get; set; }*/
         public DateTime? ModifiedOn { get; set; }
         public IsActive IsActive { get; set; }
     }

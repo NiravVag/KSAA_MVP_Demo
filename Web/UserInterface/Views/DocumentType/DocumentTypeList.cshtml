@@ -36,32 +36,40 @@
                                                 <table id="datable_1" class="table table-hover display pb-30">
                                                     <thead>
                                                         <tr>
+                                                            <th hidden>Id</th>
                                                             <th>Bill Type</th>
-                                                            <th>Transaction Type</th>
+                                                            <th>Document Code</th>
+                                                            <th>Document Type</th>
                                                             <th>OurSoftwareProcessing</th>
-                                                            <th>IP</th>
-                                                            <th>BrowserCase</th>
+                                                            @*<th>IP</th>
+                                                            <th>BrowserCase</th>*@
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     @foreach (var item in Model)
                                                     {
                                                         <tr>
+                                                            <td hidden>
+                                                                @Html.DisplayFor(modelItem => item.Id)
+                                                            </td>
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.BillType)
                                                             </td>
                                                             <td>
-                                                                @Html.DisplayFor(modelItem => item.TransactionType)
+                                                                @Html.DisplayFor(modelItem => item.Document_Code)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Document_Type)
                                                             </td>
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.OurSoftwareProcessing)
                                                             </td>
-                                                            <td>
+                                                           @*<td>
                                                                 @Html.DisplayFor(modelItem => item.IP)
                                                             </td>
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.BrowserCase)
-                                                            </td>
+                                                            </td>*@
                                                             <td class="text-nowrap">
                                                                 <a asp-route-id="@item.Id" asp-controller="DocumentType" asp-action="GetDocument" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                                 <a asp-route-id="@item.Id" asp-controller="DocumentType" asp-action="DeleteDocument" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
@@ -73,11 +81,13 @@
 
                                                     <tfoot>
                                                         <tr>
+                                                            <th hidden>Id</th>
                                                             <th>Bill Type</th>
-                                                            <th>Transaction Type</th>
+                                                            <th>Document Code</th>
+                                                            <th>Document Type</th>
                                                             <th>OurSoftwareProcessing</th>
-                                                            <th>IP</th>
-                                                            <th>BrowserCase</th>
+                                                            @*<th>IP</th>
+                                                            <th>BrowserCase</th>*@
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>
@@ -95,3 +105,13 @@
     </div>
 </div>
 <!-- /Row -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $('#datable_1').DataTable({
+            "order": [[0, "desc"]]
+        });
+    });
+</script>

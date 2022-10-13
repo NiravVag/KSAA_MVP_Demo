@@ -10,7 +10,8 @@ namespace KSAA.Master.Application.DTOs.Master
     {
         public long Id { get; set; }
         public string? BillType { get; set; }
-        public string? TransactionType { get; set; }
+        public string? Document_Code { get; set; }
+        public string? Document_Type { get; set; }
         public string? OurSoftwareProcessing { get; set; }
         public string? IP { get; set; }
         public string? BrowserCase { get; set; }
@@ -32,7 +33,8 @@ namespace KSAA.Master.Application.DTOs.Master
     {
         public long id { get; set; }
         public string billType { get; set; }
-        public string transactionType { get; set; }
+        public string document_Code { get; set; }
+        public string Document_Type { get; set; }
         public string ourSoftwareProcessing { get; set; }
         public string iP { get; set; }
         public string browserCase { get; set; }
@@ -46,4 +48,3 @@ namespace KSAA.Master.Application.DTOs.Master
         public object message { get; set; }
     }
 }
-

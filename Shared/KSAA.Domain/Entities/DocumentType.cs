@@ -10,7 +10,8 @@ namespace KSAA.Domain.Entities
     public class DocumentType : BaseEntity
     {
         public virtual string? BillType { get; set; }
-        public virtual string? TransactionType { get; set; }
+        public virtual string? Document_Code { get; set; }
+        public virtual string? Document_Type { get; set; }
         public virtual string? OurSoftwareProcessing { get; set; }
         public virtual string? CreatedBy { get; set; }
         public virtual DateTime? CreatedOn { get; set; }

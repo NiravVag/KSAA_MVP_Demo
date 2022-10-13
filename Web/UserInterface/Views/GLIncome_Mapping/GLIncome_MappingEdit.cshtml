@@ -1,0 +1,117 @@
+﻿@model KSAA.Master.Application.DTOs.Master.GLIncome_MappingViewModel
+
+<div class="row">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <h6 class="txt-dark capitalize-font">Edit GLIncome_Mapping</h6>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-wrap">
+                            <form class="form-horizontal" data-toggle="validator" role="form" method="post" id="frmGLIncomeMappingEdit" name="frmGLIncomeMappingEdit">
+                                <!--/Row-->
+                                @Html.HiddenFor(x=>x.Id)
+                                <!--/Row-->
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-barcode"></i></div>
+                                                        <input class="form-control" data-required-error="GL Income Code is required" placeholder="Enter GL Income Code" required id="GLIncomeCode" asp-for="GLIncomeCode">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                                                        <input class="form-control" data-required-error="GL Income Description is required" placeholder="Enter GL Income Description" required id="GLIncomeDescription" asp-for="GLIncomeDescription">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="form-actions mt-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit"
+                                                            class="btn btn-success  mr-10">
+                                                        Submit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#frmGLIncomeMappingEdit').validator().on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                    // handle the invalid form...
+                }
+                else {
+                    var obj = {
+                        Id: @Model.Id,
+                        GLIncomeCode: $("#GLIncomeCode").val(),
+                        GLIncomeDescription: $("#GLIncomeDescription").val(),
+                        Ip: $("#Ip").val(),
+                        BrowserCase: $("#BrowserCase").val()
+                    };
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/GLIncome_Mapping/GLIncome_MappingEdit',
+                        method: 'POST',
+                        data: obj,
+                        success: function (data) {
+                            debugger;
+                            $.toast({
+                                text: "GL Income Mapping Update SuccessFully",
+                                position: 'top-right',
+                                loaderBg: '#f8b32d',
+                                icon: 'success',
+                                hideAfter: 3500,
+                                stack: 6,
+                            })
+                            setTimeout(function () {
+                                window.location.href = "/GLIncome_Mapping/GLIncome_MappingList"
+                            }, 1500);
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+    }

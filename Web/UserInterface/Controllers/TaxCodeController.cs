@@ -83,7 +83,7 @@ namespace KSAA.UserInterface.Web.Controllers
             return View(TaxCodeViewModel);
         }
 
-        public async Task<IActionResult> TaxCodeEdit(TaxCodeViewModel TaxCodeViewModel)
+        public async Task<IActionResult> TaxCodeEdits(TaxCodeViewModel TaxCodeViewModel)
         {
             using (var client = new HttpClient())
             {
@@ -171,10 +171,5 @@ namespace KSAA.UserInterface.Web.Controllers
         }
 
         public T Data { get; set; }
-    }
-
-    public class ErrorResponse
-    {
-        public string Message { get; set; }
     }
 }

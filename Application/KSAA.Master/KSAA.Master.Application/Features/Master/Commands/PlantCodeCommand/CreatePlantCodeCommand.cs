@@ -31,10 +31,10 @@ namespace KSAA.Master.Application.Features.Master.Commands.PlantCodeCommand
         public string? ServicesProvided { get; set; }
         [Required]
         public string? RegistrationType { get; set; }
-        [Required]
+        /*[Required]
         public string? IP { get; set; }
         [Required]
-        public string? BrowserCase { get; set; }
+        public string? BrowserCase { get; set; }*/
     }
 }
 

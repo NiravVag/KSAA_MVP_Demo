@@ -1,8 +1,12 @@
-﻿using KSAA.Domain.Common;
+﻿using KSAA.DAL;
+using KSAA.Domain.Common;
 using KSAA.Domain.Entities;
+using KSAA.Master.Application.DTOs.Master;
+using KSAA.User.Application.DTOs.Role;
 using KSAA.User.Application.DTOs.User;
 using KSAA.User.Application.Wrappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json;
@@ -62,9 +66,75 @@ namespace KSAA.UserInterface.Web.Controllers
             return View(users);
         }
 
-        public IActionResult UserAdd()
+        public async Task<IActionResult> UserAdd()
         {
             UserViewModel userViewModel = new UserViewModel();
+
+            //Company Dropdown
+            List<CompanyViewModel> CompanysList = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7050/");
+                var requestContent = new StringContent("{}", Encoding.UTF8, "application/json");
+                var responseTask = await client.PostAsync("api/Company/GetAllCompany", requestContent);
+                //responseTask.Wait();
+
+                var result = responseTask;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<List<CompanyViewModel>>>(readTask);
+
+                    CompanysList = data.Data;
+
+                    CompanysList.Insert(0, new CompanyViewModel() { Id = 0, Company_Name = "----- Select Company -----" });
+
+                    ViewBag.Companys = CompanysList;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    CompanysList = Enumerable.Empty<CompanyViewModel>().ToList();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
+            //User Role Dropdown
+            List<RoleListModel> RolesList = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7146/");
+                var requestContent = new StringContent("{}", Encoding.UTF8, "application/json");
+                var responseTask = await client.PostAsync("api/Role/GetAllRole", requestContent);
+                //responseTask.Wait();
+
+                var result = responseTask;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<List<RoleListModel>>>(readTask);
+
+                    RolesList = data.Data;
+
+                    RolesList.Insert(0, new RoleListModel() { Id = 0, Name = "----- Select Role -----" });
+
+                    ViewBag.Roles = RolesList;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    RolesList = Enumerable.Empty<RoleListModel>().ToList();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
+
             return View(userViewModel);
         }
 
@@ -92,7 +162,7 @@ namespace KSAA.UserInterface.Web.Controllers
                 else
                 {
                     var error = JsonConvert.DeserializeObject<ErrorResponse>(await postTask.Content.ReadAsStringAsync());
-                    
+
                     return BadRequest(error);
                 }
             }
@@ -104,6 +174,70 @@ namespace KSAA.UserInterface.Web.Controllers
 
         public async Task<IActionResult> GetUserById(int id)
         {
+            //Company Dropdown
+            List<CompanyViewModel> CompanysList = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7050/");
+                var requestContent = new StringContent("{}", Encoding.UTF8, "application/json");
+                var responseTask = await client.PostAsync("api/Company/GetAllCompany", requestContent);
+                //responseTask.Wait();
+
+                var result = responseTask;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<List<CompanyViewModel>>>(readTask);
+
+                    CompanysList = data.Data;
+
+                    CompanysList.Insert(0, new CompanyViewModel() { Id = 0, Company_Name = "----- Select Company -----" });
+
+                    ViewBag.Companys = CompanysList;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    CompanysList = Enumerable.Empty<CompanyViewModel>().ToList();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
+            //User Role Dropdown
+            List<RoleListModel> RolesList = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7146/");
+                var requestContent = new StringContent("{}", Encoding.UTF8, "application/json");
+                var responseTask = await client.PostAsync("api/Role/GetAllRole", requestContent);
+                //responseTask.Wait();
+
+                var result = responseTask;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CommonResponse<List<RoleListModel>>>(readTask);
+
+                    RolesList = data.Data;
+
+                    RolesList.Insert(0, new RoleListModel() { Id = 0, Name = "----- Select Role -----" });
+
+                    ViewBag.Roles = RolesList;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    RolesList = Enumerable.Empty<RoleListModel>().ToList();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
             UserViewModel users = null;
 
             using (var client = new HttpClient())

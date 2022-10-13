@@ -13,15 +13,15 @@ namespace KSAA.Master.Application.Features.Master.Queries.PlantCodeQueries
 {
     public class GetPlantCodeByIdQuery : IRequest<Response<PlantCodeViewModel>>
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 
-    public class GetUserByIdQueryHandler : IRequestHandler<GetPlantCodeByIdQuery, Response<PlantCodeViewModel>>
+    public class GetPlantCodeByIdQueryHandler : IRequestHandler<GetPlantCodeByIdQuery, Response<PlantCodeViewModel>>
     {
         private readonly IPlantCodeService _PlantCodeService;
         private readonly IMapper _mapper;
 
-        public GetUserByIdQueryHandler(IPlantCodeService PlantCodeService, IMapper mapper)
+        public GetPlantCodeByIdQueryHandler(IPlantCodeService PlantCodeService, IMapper mapper)
         {
             _PlantCodeService = PlantCodeService;
             _mapper = mapper;

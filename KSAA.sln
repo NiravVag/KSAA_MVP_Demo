@@ -47,17 +47,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSAA.AuthServer", "AuthServ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KSAA.Master", "KSAA.Master", "{D14510BC-08E1-4FCC-925F-2FF74EE674D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSAA.Master.Infrastructure.Persistence", "Infrastructure\KSAA.Master\KSAA.Master.Infrastructure.Persistence\KSAA.Master.Infrastructure.Persistence.csproj", "{D62028E9-E816-41A3-A254-BC64B75F8ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSAA.Master.Infrastructure.Persistence", "Infrastructure\KSAA.Master\KSAA.Master.Infrastructure.Persistence\KSAA.Master.Infrastructure.Persistence.csproj", "{D62028E9-E816-41A3-A254-BC64B75F8ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSAA.Master.Infrastructure.Shared", "Infrastructure\KSAA.Master\KSAA.Master.Infrastructure.Shared\KSAA.Master.Infrastructure.Shared.csproj", "{9947EE16-E86E-46EE-B601-176547D42130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSAA.Master.Infrastructure.Shared", "Infrastructure\KSAA.Master\KSAA.Master.Infrastructure.Shared\KSAA.Master.Infrastructure.Shared.csproj", "{9947EE16-E86E-46EE-B601-176547D42130}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KSAA.Master", "KSAA.Master", "{F32E4CAC-6D45-48D2-AFA0-1211F2B99CC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSAA.Master.Application", "Application\KSAA.Master\KSAA.Master.Application\KSAA.Master.Application.csproj", "{05114DEA-7388-493A-93BD-1C25764CACFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSAA.Master.Application", "Application\KSAA.Master\KSAA.Master.Application\KSAA.Master.Application.csproj", "{05114DEA-7388-493A-93BD-1C25764CACFC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KSAA.Master", "KSAA.Master", "{C328EB65-9A5C-4756-A9D4-BBC15E90248A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSAA.Master.ApiServices", "ApiServices\KSAA.Master\KSAA.Master.ApiServices\KSAA.Master.ApiServices.csproj", "{1F681F52-54CB-40A4-856B-CF62CE6DB116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSAA.Master.ApiServices", "ApiServices\KSAA.Master\KSAA.Master.ApiServices\KSAA.Master.ApiServices.csproj", "{1F681F52-54CB-40A4-856B-CF62CE6DB116}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

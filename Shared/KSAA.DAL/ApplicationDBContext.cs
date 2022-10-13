@@ -20,6 +20,12 @@ namespace KSAA.DAL
         DbSet<DocumentType> DocumentTypes { get; set; }
         DbSet<PlantCode> PlantCodes { get; set; }
         DbSet<TaxCode> TaxCodes { get; set; }
+        DbSet<CustomerCode> CustomerCodes { get; set; }
+        DbSet<VendorCode> VendorCodes { get; set; }
+        DbSet<Company> Companies { get; set; }
+        DbSet<Location> Locations { get; set; }
+        DbSet<TBTagging> TBTaggings { get; set; }
+        DbSet<GLIncome_Mapping> GLIncome_Mappings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -86,6 +92,26 @@ namespace KSAA.DAL
             builder.Entity<TaxCode>(b =>
             {
                 b.ToTable("tbl_Tax_Code");
+            });
+            builder.Entity<CustomerCode>(b =>
+            {
+                b.ToTable("tbl_Customer_Code");
+            });
+            builder.Entity<VendorCode>(b =>
+            {
+                b.ToTable("tbl_Vendor_Code");
+            });
+            builder.Entity<Location>(b =>
+            {
+                b.ToTable("tbl_Location");
+            });
+            builder.Entity<TBTagging>(b =>
+            {
+                b.ToTable("tbl_TBTagging");
+            });
+            builder.Entity<GLIncome_Mapping>(b =>
+            {
+                b.ToTable("tbl_GL_Income_Mapping");
             });
         }
     }
