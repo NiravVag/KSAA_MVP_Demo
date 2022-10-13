@@ -16,12 +16,12 @@ namespace KSAA.Master.Application.Features.Master.Queries.DocumetTypeQueries
         public int Id { get; set; }
     }
 
-    public class GetUserByIdQueryHandler : IRequestHandler<GetDocumentTypeByIdQuery, Response<DocumentTypeViewModel>>
+    public class GetDocumentTypeByIdQueryHandler : IRequestHandler<GetDocumentTypeByIdQuery, Response<DocumentTypeViewModel>>
     {
         private readonly IDocumentTypeService _documentTypeService;
         private readonly IMapper _mapper;
 
-        public GetUserByIdQueryHandler(IDocumentTypeService documentTypeService, IMapper mapper)
+        public GetDocumentTypeByIdQueryHandler(IDocumentTypeService documentTypeService, IMapper mapper)
         {
             _documentTypeService = documentTypeService;
             _mapper = mapper;

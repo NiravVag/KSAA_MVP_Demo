@@ -13,7 +13,13 @@ builder.Services.AddControllers();
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IDocumentTypeService , DocumentTypeService>(); 
 builder.Services.AddScoped<IPlantCodeService , PlantCodeService>();
-builder.Services.AddScoped<ITaxCodeService, TaxCodeServices>();
+builder.Services.AddScoped<ITaxCodeService, TaxCodeService>();
+builder.Services.AddScoped<ICustomerCodeService, CustomerCodeService>();
+builder.Services.AddScoped<IVendorCodeService, VendorCodeService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<ITBTaggingService, TBTaggingService>();
+builder.Services.AddScoped<IGLIncome_MappingService, GLIncome_MappingService>();
 
 builder.Services.AddJwtTokenAuthentication(builder.Configuration);
 builder.Services.AddApiVersioningExtension();

@@ -3,8 +3,14 @@ using KSAA.Domain.Entities;
 using KSAA.Master.Application.DTOs.Master;
 using KSAA.Master.Application.Features.Commands.TaxCodeCommand;
 using KSAA.Master.Application.Features.Master.Commands;
+using KSAA.Master.Application.Features.Master.Commands.CompanyCommand;
+using KSAA.Master.Application.Features.Master.Commands.CustomerCodeCommand;
 using KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand;
+using KSAA.Master.Application.Features.Master.Commands.GLIncome_MappingCommand;
+using KSAA.Master.Application.Features.Master.Commands.LocationCommand;
 using KSAA.Master.Application.Features.Master.Commands.PlantCodeCommand;
+using KSAA.Master.Application.Features.Master.Commands.TBTaggingCommand;
+using KSAA.Master.Application.Features.Master.Commands.VendorCodeCommand;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +38,42 @@ namespace KSAA.Master.Application
             CreateMap<CreateTaxCodeCommand, TaxCode>();
             CreateMap<UpdateTaxCodeCommand, TaxCode>();
             CreateMap<TaxCode, TaxCodeViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
+
+            CreateMap<CreateCustomerCodeCommand, CustomerCode>();
+            CreateMap<UpdateCustomerCodeCommand, CustomerCode>();
+            CreateMap<CustomerCode, CustomerCodeViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
+
+            CreateMap<CreateVendorCodeCommand, VendorCode>();
+            CreateMap<UpdateVendorCodeCommand, VendorCode>();
+            CreateMap<VendorCode, VendorCodeViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
+
+            CreateMap<CreateCompanyCommand, Company>();
+            CreateMap<UpdateCompanyCommand, Company>();
+            CreateMap<Company, CompanyViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
+
+            CreateMap<CreateLocationCommand, Location>();
+            CreateMap<UpdateLocationCommand, Location>();
+            CreateMap<Location, LocationViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
+
+            CreateMap<CreateTBTaggingCommand, TBTagging>();
+            CreateMap<UpdateTBTaggingCommand, TBTagging>();
+            CreateMap<TBTagging, TBTaggingViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ReverseMap();
+
+            CreateMap<CreateGLIncome_MappingCommand, GLIncome_Mapping>();
+            CreateMap<UpdateGLIncome_MappingCommand, GLIncome_Mapping>();
+            CreateMap<GLIncome_Mapping, GLIncome_MappingViewModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
                 .ReverseMap();
         }

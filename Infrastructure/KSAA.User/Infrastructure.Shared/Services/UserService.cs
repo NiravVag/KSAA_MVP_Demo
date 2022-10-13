@@ -136,7 +136,7 @@ namespace KSAA.User.Infrastructure.Shared.Services
                     UserTypeName = y.UserTypeNavigation.UserTypeName,
                     UserType = y.UserType,
                     Company = y.Company,
-                    CompanyName = y.CompanyNavigation.CompanyName,
+                    CompanyName = y.CompanyNavigation.Company_Name,
                     IsActive = y.IsActive,
                     UserRoleName = string.Join(", ", y.UserRoles.Select(x => x.Role.Name).ToList())
                 }).Where(x => x.IsActive != IsActive.Delete).OrderByDescending(x => x.Id).ToListAsync();

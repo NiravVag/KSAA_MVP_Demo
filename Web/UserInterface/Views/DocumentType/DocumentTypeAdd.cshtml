@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-wrap">
-                            <form class="form-horizontal" data-toggle="validator" asp-action="DocumentTypeAdd" role="form" method="post" id="frmDocumentTypeAdd">
+                            <form class="form-horizontal" data-toggle="validator" role="form" method="post" id="frmDocumentTypeAdd" name="frmDocumentTypeAdd">
                                 <!--/Row-->
                                 <div class="form-body">
                                     <div class="row">
@@ -34,7 +34,7 @@
                                                 <div class="col-md-9">
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><i class="fa fa-file-text"></i></div>
-                                                        <input class="form-control" data-required-error="Bill Type is required" id="txtBillType" placeholder="Enter Bill Type" required asp-for="BillType">
+                                                        <input class="form-control" data-required-error="BillType is required" id="BillType" placeholder="Enter BillType" required asp-for="BillType">
                                                     </div>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -48,15 +48,16 @@
                                                     <div class="col-md-9">
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
-                                                                <i class="fa fa-rupee"></i>
+                                                                <i class="fa fa-file-text"></i>
                                                             </div>
-                                                            <input class="form-control" data-required-error="Transaction Type is required" id="txtTransactionType" placeholder="Enter Transaction Type" required asp-for="TransactionType">
+                                                            <input class="form-control" data-required-error="Document Code is required" id="Document_Code" placeholder="Enter Document Code" required asp-for="Document_Code">
                                                         </div>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!---->
                                     </div>
                                     <!--/span-->
                                 </div>
@@ -68,8 +69,8 @@
                                                 <div class="control-label col-md-3"></div>
                                                 <div class="col-md-9">
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><i class="fa fa-cogs"></i></div>
-                                                        <input class="form-control" data-required-error="Our Software Processing is required" id="txtOurSoftwareProcessing" placeholder="Enter Our Software Processing" required asp-for="OurSoftwareProcessing">
+                                                        <div class="input-group-addon"><i class="ti-reload"></i></div>
+                                                        <input class="form-control" data-required-error="OurSoftwareProcessing is required" id="OurSoftwareProcessing" placeholder="Enter OurSoftwareProcessing" required asp-for="OurSoftwareProcessing">
                                                     </div>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -83,9 +84,9 @@
                                                     <div class="col-md-9">
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
-                                                                <i class="ti-user"></i>
+                                                                <i class="fa fa-file-text"></i>
                                                             </div>
-                                                            <input class="form-control" data-required-error="IP is required" id="txtIP" placeholder="Enter IP" required asp-for="IP">
+                                                            <input class="form-control" data-required-error="Document Type is required" id="Document_Type" placeholder="Enter Document_Type" required asp-for="Document_Type">
                                                         </div>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -95,31 +96,51 @@
                                     </div>
                                     <!--/span-->
                                     <!--/Row-->
+                                </div>
+                                @*<div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="ti-user"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="IP is required" id="Ip" placeholder="Enter IP" required asp-for="IP">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
                                         </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="control-label col-md-3"></div>
                                                 <div class="col-md-9">
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><i class="fa fa-edge"></i></div>
-                                                    <input class="form-control" data-required-error="Browser Case is required" id="txtBrowserCase" placeholder="Enter Browser Case" required asp-for="BrowserCase">
+                                                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                        <input class="form-control" data-required-error="BrowserCase is required" id="BrowserCase" placeholder="Enter BrowserCase" required asp-for="BrowserCase">
                                                     </div>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                
+                                </div>*@
                                 <!-- /Row -->
                                 <div class="form-actions mt-10">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-offset-3 col-md-9">
-                                                    <button type="submit" class="btn btn-success  mr-10">Submit</button>
-                                                    <a href="~/DocumentType/DocumentTypeList" class="btn btn-default" id="btnCancel">Cancel</a>
-                                                    @*<button type="button" class="btn btn-default">Cancel</button>*@
+                                                    <button type="submit"
+                                                            class="btn btn-success  mr-10">
+                                                        Submit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,52 +156,47 @@
     </div>
 </div>
 
-@section scripts{
+@section Scripts{
 
-        <script>
-
-            $('#frmDocumentTypeAdd').validator().on('submit', function (e) 
-            {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#frmDocumentTypeAdd').validator().on('submit', function (e) {
                 if (e.isDefaultPrevented()) {
                     // handle the invalid form...
-                } else 
-                {
-                e.preventDefault();
-                $.ajax({
-                type: "POST",
-                url: "" + $('#hdnPath').val() + "/DocumentType/DocumentTypeAdd/",
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                cache: false,
-                beforeSend: function () {
-                    addRemoveLoader(false);
-                },
-                success: function (responses) {
-                    if (responses.success) {
-                        //toastr.success(responses.message);
-                        Swal.fire({
-                            title: "Success!", text: "Your DocumentType details stored successfully!", type: "success", confirmButtonColor: "#556ee6", allowOutsideClick: !1
-                        }).then(function (t) {
-                            if (t.value) {
-                                close();
-                                //window.location.href = $('#hdnPath').val() + "/User";
-                            }
-                        });
-                    }
-                    else {
-                        toastr.error(responses.message);
-                    }
-                },
-                error: function (response) {
-                    toastr.error("Error");
-                },
-                complete: function () {
-                    addRemoveLoader(true);
-                },
-                });
                 }
-            }
+                else {
+                    var obj = {
+                        Id: @Model.Id,
+                        BillType: $("#BillType").val(),
+                        Document_Code: $("#Document_Code").val(),
+                        OurSoftwareProcessing: $("#OurSoftwareProcessing").val(),
+                        Document_Type: $("#Document_Type").val(),
+                        Ip: $("#Ip").val(),
+                        BrowserCase: $("#BrowserCase").val()
+                    };
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/DocumentType/DocumentTypeAdd',
+                        method: 'POST',
+                        data: obj,
+                        success: function (data) {
+                            debugger;
+                            $.toast({
+                                text: "Document Type Add SuccessFully",
+                                position: 'top-right',
+                                loaderBg: '#f8b32d',
+                                icon: 'success',
+                                hideAfter: 3500,
+                                stack: 6,
 
-        </script>
-}
+                            })
+                            setTimeout(function () {
+                                window.location.href = "/DocumentType/DocumentTypeList"
+                            }, 1500);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    }

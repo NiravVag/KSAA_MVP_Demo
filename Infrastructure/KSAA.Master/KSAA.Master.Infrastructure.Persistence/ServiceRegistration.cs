@@ -22,7 +22,13 @@ namespace KSAA.Master.Infrastructure.Persistence
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<IDocumentTypeService, DocumentTypeService>();
             services.AddScoped<IPlantCodeService , PlantCodeService>();
-            services.AddScoped<ITaxCodeService, TaxCodeServices>();
+            services.AddScoped<ITaxCodeService, TaxCodeService>();
+            services.AddScoped<ICustomerCodeService, CustomerCodeService>();
+            services.AddScoped<IVendorCodeService, VendorCodeService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<ITBTaggingService, TBTaggingService>();
+            services.AddScoped<IGLIncome_MappingService, GLIncome_MappingService>();
 
             #region Repositories
 

@@ -15,10 +15,11 @@ namespace KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand
     {
         public long Id { get; set; }
         public string? BillType { get; set; }
-        public string? TransactionType { get; set; }
+        public string? Document_Code { get; set; }
+        public string? Document_Type { get; set; }
         public string? OurSoftwareProcessing { get; set; }
-        public string? IP { get; set; }
-        public string? BrowserCase { get; set; }
+        /*public string? IP { get; set; }
+        public string? BrowserCase { get; set; }*/
         public IsActive IsActive { get; set; }
         public DateTime? ModifiedOn { get; set; }
     }

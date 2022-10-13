@@ -28,11 +28,10 @@ namespace KSAA.UserInterface.Web.Controllers
 
                     documentTypes = users1.Select(x => new DocumentTypeViewModel
                     {
-
-
                         Id = x.id,
                         BillType = x.billType,
-                        TransactionType = x.transactionType,
+                        Document_Code = x.document_Code,
+                        Document_Type = x.Document_Type,
                         OurSoftwareProcessing = x.ourSoftwareProcessing,
                         IP = x.iP,
                         BrowserCase = x.browserCase,
@@ -82,7 +81,7 @@ namespace KSAA.UserInterface.Web.Controllers
             return View(documentTypeViewModel);
         }
 
-        public async Task<IActionResult> DocomentTypeEdit(DocumentTypeViewModel documentTypeViewModel)
+        public async Task<IActionResult> DocomentTypeEdits(DocumentTypeViewModel documentTypeViewModel)
         {
             using (var client = new HttpClient())
             {

@@ -77,17 +77,8 @@
                                                     <div class="control-label col-md-3"></div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <select class="selectpicker" id="RoleId" asp-for="RoleId" data-style="form-control btn-default btn-outline">
-                                                                <option value=""> ----- Select User Role ----- </option>
-                                                                <option value="1">Super Administrator</option>
-                                                                <option value="2">Client Administrator</option>
-                                                                <option value="3">Client Employee</option>
-                                                                <option value="4">Consultant</option>
-                                                                <option value="5">Executive</option>
-                                                                <option value="6">Administrator</option>
-                                                                <option value="7">Client Executive</option>
-                                                                <option value="8">Viewer</option>
-                                                            </select>
+                                                            <select asp-for="RoleId" class="selectpicker" data-style="form-control btn-default btn-outline"
+                                                                    asp-items="@(new SelectList(@ViewBag.Roles,"Id","Name"))" id="RoleId"></select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -121,12 +112,8 @@
                                                     <div class="control-label col-md-3"></div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <select class="selectpicker" id="Company" asp-for="Company" data-style="form-control btn-default btn-outline">
-                                                                <option value=""> ----- Select Company ----- </option>
-                                                                <option value="1">Mustard</option>
-                                                                <option value="2">Ketchup</option>
-                                                                <option value="3">Relish</option>
-                                                            </select>
+                                                            <select asp-for="Company" class="selectpicker" data-style="form-control btn-default btn-outline"
+                                                                    asp-items="@(new SelectList(@ViewBag.Companys,"Id","Company_Name"))" id="Company"></select>
                                                         </div>
                                                     </div>
                                                 </div>

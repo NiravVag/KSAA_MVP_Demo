@@ -16,12 +16,12 @@ namespace KSAA.Master.Application.Features.Master.Queries.TaxCodeQueries
         public int Id { get; set; }
     }
 
-    public class GetUserByIdQueryHandler : IRequestHandler<GetTaxCodeByIdQuery, Response<TaxCodeViewModel>>
+    public class GetTaxCodeByIdQueryHandler : IRequestHandler<GetTaxCodeByIdQuery, Response<TaxCodeViewModel>>
     {
         private readonly ITaxCodeService _taxCodeService;
         private readonly IMapper _mapper;
 
-        public GetUserByIdQueryHandler(ITaxCodeService taxCodeService, IMapper mapper)
+        public GetTaxCodeByIdQueryHandler(ITaxCodeService taxCodeService, IMapper mapper)
         {
             _taxCodeService = taxCodeService;
             _mapper = mapper;

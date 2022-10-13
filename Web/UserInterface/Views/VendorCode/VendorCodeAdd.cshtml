@@ -1,0 +1,213 @@
+﻿@model KSAA.Master.Application.DTOs.Master.VendorCodeViewModel
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div>
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <a href="~/VendorCode/VendorCodeList" class="btn btn-primary btn-outline fancy-button btn-0" style="color: black; float: right;">Vendor Code List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <h6 class="txt-dark capitalize-font">Add Vendor Code</h6>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-wrap">
+                            <form class="form-horizontal" data-toggle="validator" role="form" method="post" id="frmVendorCodeAdd" name="frmVendorCodeAdd">     
+                                <!--/Row-->
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-barcode"></i></div>
+                                                        <input class="form-control" data-required-error="Customer Code is required" placeholder="Enter Customer Code" required id="Customer_Code" asp-for="Customer_Code">
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="control-label col-md-3"></div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
+                                                        <textarea class="form-control" data-required-error="Address is required" placeholder="Enter Address" id="Address" required asp-for="Address"></textarea>
+                                                    </div>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-location-arrow"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="Location is required" placeholder="Enter Location" id="Location" required asp-for="Location">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa  fa-credit-card"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="GSTN is required" placeholder="Enter GSTN" id="GSTN" required asp-for="GSTN">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="ti-user"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="Name is required" placeholder="Enter Name" id="Name" required asp-for="Name">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    @*<div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="ti-user"></i>
+                                                    </div>
+                                                    <input class="form-control" data-required-error="IP is required" placeholder="Enter IP" id="Ip" required asp-for="IP">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <!--/span-->
+                                </div>
+                                <!-- /Row -->
+                                @*<div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="BrowserCase is required" placeholder="Enter BrowserCase" id="BrowserCase" required asp-for="BrowserCase">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <!-- /Row -->
+                                <div class="form-actions mt-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit"
+                                                            class="btn btn-success  mr-10">
+                                                        Submit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6"> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#frmVendorCodeAdd').validator().on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                    // handle the invalid form...
+                }
+                else {
+                    var obj = {
+                        Id: @Model.Id,
+                        Customer_Code: $("#Customer_Code").val(),
+                        Address: $("#Address").val(),
+                        Location: $("#Location").val(),
+                        GSTN: $("#GSTN").val(),
+                        Name: $("#Name").val(),
+                        Ip: $("#Ip").val(),
+                        BrowserCase: $("#BrowserCase").val()
+                    };
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/VendorCode/VendorCodeAdd',
+                        method: 'POST',
+                        data: obj,
+                        success: function (data) {
+                            debugger;
+                            $.toast({
+                                text: "Vendor Code Add SuccessFully",
+                                position: 'top-right',
+                                loaderBg: '#f8b32d',
+                                icon: 'success',
+                                hideAfter: 3500,
+                                stack: 6,
+
+                            })
+                            setTimeout(function () {
+                                window.location.href = "/VendorCode/VendorCodeList"
+                            }, 1500);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    }

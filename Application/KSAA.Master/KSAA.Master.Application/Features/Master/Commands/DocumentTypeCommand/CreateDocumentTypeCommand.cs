@@ -15,13 +15,15 @@ namespace KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand
         [Required]
         public virtual string? BillType { get; set; }
         [Required]
-        public virtual string? TransactionType { get; set; }
+        public virtual string? Document_Code { get; set; }
+        [Required]
+        public virtual string? Document_Type { get; set; }
         [Required]
         public virtual string? OurSoftwareProcessing { get; set; }
-        [Required]
+        /*[Required]
         public virtual string? IP { get; set; }
         [Required]
-        public virtual string? BrowserCase { get; set; }
+        public virtual string? BrowserCase { get; set; }*/
     }
 
     public class CreateDocumentTypeCommandHandler : IRequestHandler<CreateDocumentTypeCommand, Response>

@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-wrap">
-                            <form class="form-horizontal" data-toggle="validator" asp-action="PlantCodeEdit" role="form" method="post" id="frmPlantCodeEdit">
+                            <form class="form-horizontal" data-toggle="validator" role="form" method="post" id="frmPlantCodeEdit" name="frmPlantCodeEdit">
                                 <!--/Row-->
                                 @Html.HiddenFor(x=>x.Id)
                                 <div class="form-body">
@@ -21,8 +21,8 @@
                                                 <div class="control-label col-md-3"></div>
                                                 <div class="col-md-9">
                                                     <div class="input-group">
-                                                        <div class="input-group-addon"><i class="fa fa-building"></i></div>
-                                                        <input class="form-control" data-required-error="Plant Code is required" placeholder="Enter Plant Code" required asp-for="Plant_Code">
+                                                        <div class="input-group-addon"><i class="fa fa-barcode"></i></div>
+                                                        <input class="form-control" data-required-error="PlantCode is required" placeholder="Enter Plant Code" id="Plant_Code" required asp-for="Plant_Code">
                                                     </div>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -35,7 +35,7 @@
                                                 <div class="col-md-9">
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><i class="fa fa-map-marker"></i></div>
-                                                        <textarea class="form-control" data-required-error="Address is required" placeholder="Enter Address" required asp-for="Address"></textarea>
+                                                        <textarea class="form-control" data-required-error="Address is required" placeholder="Enter Address" id="Address" required asp-for="Address"></textarea>
                                                     </div>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
@@ -54,7 +54,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-location-arrow"></i>
                                                     </div>
-                                                    <input class="form-control" data-required-error="Location is required" placeholder="Enter Location" required asp-for="Location">
+                                                    <input class="form-control" data-required-error="Location is required" placeholder="Enter Location" id="Location" required asp-for="Location">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -67,9 +67,9 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-inr"></i>
+                                                        <i class="fa  fa-credit-card"></i>
                                                     </div>
-                                                    <input class="form-control" data-required-error="GST Registration No is required" placeholder="Enter GST Registration No" required asp-for="GSTRegistrationNo">
+                                                    <input class="form-control" data-required-error="GSTRegistrationNo is required" placeholder="Enter GSTRegistrationNo" id="GSTRegistrationNo" required asp-for="GSTRegistrationNo">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -87,7 +87,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-universal-access"></i>
                                                     </div>
-                                                    <input class="form-control" data-required-error="Type Of Unit is required" placeholder="Enter Type Of Unit" required asp-for="TypeOfUnit">
+                                                    <input class="form-control" data-required-error="Type Of Unit is required" placeholder="Enter Type Of Unit" id="TypeOfUnit" required asp-for="TypeOfUnit">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -102,7 +102,7 @@
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-product-hunt"></i>
                                                     </div>
-                                                    <input class="form-control" data-required-error="Products Manufactured is required" placeholder="Enter Products Manufactured" required asp-for="ProductsManufactured">
+                                                    <input class="form-control" data-required-error="ProductsManufactured is required" placeholder="Enter ProductsManufactured" id="ProductsManufactured" required asp-for="ProductsManufactured">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -118,7 +118,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><i class="fa fa-product-hunt "></i></div>
-                                                    <input class="form-control" data-required-error="Products Traded is required" placeholder="Enter Products Traded" required asp-for="ProductsTraded">
+                                                    <input class="form-control" data-required-error="ProductsTraded is required" placeholder="Enter ProductsTraded" id="ProductsTraded" required asp-for="ProductsTraded">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -130,14 +130,42 @@
                                             <div class="control-label col-md-3"></div>
                                             <div class="col-md-9">
                                                 <div class="input-group">
-                                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                                    <input class="form-control" data-required-error="Services Provided is required" placeholder="Enter Services Provided" required asp-for="ServicesProvided">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="ServicesProvided is required" placeholder="Enter ServicesProvided" id="ServicesProvided" required asp-for="ServicesProvided">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /Row -->
+                                @*<div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="IP is required" placeholder="Enter IP" id="Ip" required asp-for="IP">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                    <input class="form-control" data-required-error="BrowserCase is required" placeholder="Enter BrowserCase" id="BrowserCase" required asp-for="BrowserCase">
+                                                </div>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
                                 <!-- /Row -->
                                 <div class="row">
                                     <div class="col-md-6">
@@ -146,35 +174,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <div class="input-group-addon"><i class="ti-user"></i></div>
-                                                    <input class="form-control" data-required-error="IP is required" placeholder="Enter IP" required asp-for="IP">
-                                                </div>
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="control-label col-md-3"></div>
-                                            <div class="col-md-9">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon"><i class="fa fa-edge"></i></div>
-                                                    <input class="form-control" data-required-error="Browser Case is required" placeholder="Enter Browser Case" required asp-for="BrowserCase">
-                                                </div>
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Row -->
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="control-label col-md-3"></div>
-                                            <div class="col-md-9">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                                    <input class="form-control" data-required-error="Registration Type is required" placeholder="Enter Registration Type" required asp-for="RegistrationType">
+                                                    <input class="form-control" data-required-error="RegistrationType is required" placeholder="Enter RegistrationType" id="RegistrationType" required asp-for="RegistrationType">
                                                 </div>
                                                 <div class="help-block with-errors"></div>
                                             </div>
@@ -191,7 +191,10 @@
                                                             class="btn btn-success  mr-10">
                                                         Submit
                                                     </button>
-                                                    <a href="~/PlantCode/PlantCodeList" class="btn btn-default" id="btnCancel">Cancel</a>
+                                                    <button type="button"
+                                                            class="btn btn-default">
+                                                        Cancel
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -207,49 +210,52 @@
     </div>
 </div>
 
-@section scripts{
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#frmPlantCodeEdit').validator().on('submit', function (e) {
+                if (e.isDefaultPrevented()) {
+                    // handle the invalid form...
+                }
+                else {
 
-    <script>
+                    var obj = {
+                        Id: @Model.Id,
+                        Plant_Code: $("#Plant_Code").val(),
+                        Address: $("#Address").val(),
+                        Location: $("#Location").val(),
+                        GSTRegistrationNo: $("#GSTRegistrationNo").val(),
+                        TypeOfUnit: $("#TypeOfUnit").val(),
+                        ProductsManufactured: $("#ProductsManufactured").val(),
+                        ProductsTraded: $("#ProductsTraded").val(),
+                        ServicesProvided: $("#ServicesProvided").val(),
+                        RegistrationType: $("#RegistrationType").val(),
+                        Ip: $("#Ip").val(),
+                        BrowserCase: $("#BrowserCase").val()
+                    };
 
-        $('#frmPlantCodeEdit').validator().on('submit', function (e) {
-            if (e.isDefaultPrevented()) {
-                // handle the invalid form...
-            } else {
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/PlantCode/PlantCodeEdit',
+                        method: 'POST',
+                        data: obj,
+                        success: function (data) {
+                            $.toast({
+                                text: "Plant Code Update SuccessFully",
+                                position: 'top-right',
+                                loaderBg: '#f8b32d',
+                                icon: 'success',
+                                hideAfter: 3500,
+                                stack: 6,
 
-                $.ajax({
-                    type: "PUT",
-                    url: "" + $('#hdnPath').val() + "/PlantCode/PlantCodeEdit/",
-                    data: JSON.stringify(obj),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    cache: false,
-                    beforeSend: function () {
-                        addRemoveLoader(false);
-                    },
-                    success: function (responses) {
-                        if (responses.success) {
-                            //toastr.success(responses.message);
-                            Swal.fire({
-                                title: "Success!", text: "Your PlantCode details Updated successfully!", type: "success", confirmButtonColor: "#556ee6", allowOutsideClick: !1
-                            }).then(function (t) {
-                                if (t.value) {
-                                    close();
-                                    //window.location.href = $('#hdnPath').val() + "/User";
-                                }
-                            });
+                            })
+                            setTimeout(function () {
+                                window.location.href = "/PlantCode/PlantCodeList"
+                            }, 1500);
                         }
-                        else {
-                            toastr.error(responses.message);
-                        }
-                    },
-                    error: function (response) {
-                        toastr.error("Error");
-                    },
-                    complete: function () {
-                        addRemoveLoader(true);
-                    },
-                });
-            }
+                    });
+                }
+            });
         });
 
     </script>
