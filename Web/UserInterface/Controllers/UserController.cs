@@ -1,6 +1,7 @@
 ﻿using KSAA.Domain.Common;
 using KSAA.Domain.Entities;
 using KSAA.User.Application.DTOs.User;
+using KSAA.User.Application.Wrappers;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
