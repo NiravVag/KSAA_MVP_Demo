@@ -1,4 +1,4 @@
-﻿using KSAA.Domain.Entities;
+﻿using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;

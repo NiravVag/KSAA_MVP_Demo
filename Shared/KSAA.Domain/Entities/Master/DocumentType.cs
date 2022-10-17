@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSAA.Domain.Entities
+namespace KSAA.Domain.Entities.Master
 {
     public class DocumentType : BaseEntity
     {
@@ -22,5 +22,5 @@ namespace KSAA.Domain.Entities
         public virtual string? BrowserCase { get; set; }
 
     }
-    
+
 }

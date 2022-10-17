@@ -1,4 +1,4 @@
-﻿using KSAA.Domain.Entities;
+﻿using KSAA.Domain.Entities.Master;
 using NHibernate.Mapping.ByCode.Conformist;
 using System;
 using System.Collections.Generic;
