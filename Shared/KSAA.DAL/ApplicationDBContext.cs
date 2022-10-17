@@ -1,4 +1,5 @@
 ﻿using KSAA.Domain.Entities;
+using KSAA.Domain.Entities.Master;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

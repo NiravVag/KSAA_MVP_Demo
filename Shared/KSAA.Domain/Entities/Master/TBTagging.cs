@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSAA.Domain.Entities
+namespace KSAA.Domain.Entities.Master
 {
-    public class GLIncome_Mapping : BaseEntity
+    public class TBTagging : BaseEntity
     {
-        public virtual string? GLIncomeCode { get; set; }
-        public virtual string? GLIncomeDescription { get; set; }
-        public virtual string? CreatedBy { get; set; }
+        public virtual string? TBTaggingCode { get; set; }
+        public virtual string? GLCode { get; set; }
+        public virtual string? GLName { get; set; }
+        public virtual decimal Amount { get; set; }
+        public virtual string? TagCode { get; set; }
         public virtual DateTime? CreatedOn { get; set; }
         public virtual string? ModifiedBy { get; set; }
         public virtual DateTime? ModifiedOn { get; set; }

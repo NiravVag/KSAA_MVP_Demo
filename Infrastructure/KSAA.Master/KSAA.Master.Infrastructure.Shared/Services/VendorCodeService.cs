@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using KSAA.Domain.Entities;
+using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
 using KSAA.Master.Application.DTOs.Master;
 using KSAA.Master.Application.Features.Master.Commands.VendorCodeCommand;
