@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.DocumentTypeDTOs;
 using KSAA.Master.Application.Interfaces.Services;
 using KSAA.Master.Application.Wrappers;
 using MediatR;
@@ -27,9 +27,10 @@ namespace KSAA.Master.Application.Features.Master.Queries.DocumetTypeQueries
         }
         public async Task<Response<IEnumerable<DocumentTypeViewModel>>> Handle(GetAllDocumentTypeQuery request, CancellationToken cancellationToken)
         {
-            var documentTypeList = await _documentTypeService.GetDocumentTypeList();
+            //return await _documentTypeService.GetDocumentTypeList();
+            var docList = await _documentTypeService.GetDocumentTypeList();
+            return new Response<IEnumerable<DocumentTypeViewModel>>(docList);
 
-            return new Response<IEnumerable<DocumentTypeViewModel>>(documentTypeList);
         }
     }
 }

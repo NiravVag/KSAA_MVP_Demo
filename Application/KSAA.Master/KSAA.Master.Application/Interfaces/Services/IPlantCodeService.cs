@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.PlantCodeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.PlantCodeCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<PlantCodeViewModel> EditPlantCode(UpdatePlantCodeCommand command);
 
-        Task<List<PlantCodeViewModel>> GetPlantCodeList();
+        Task<IEnumerable<PlantCodeViewModel>> GetPlantCodeList();
 
         Task<PlantCodeViewModel> GetPlantCodeById(long id);
 

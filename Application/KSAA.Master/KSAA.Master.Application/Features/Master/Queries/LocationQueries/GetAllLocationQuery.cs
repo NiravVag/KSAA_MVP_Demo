@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.LocationDTOs;
 using KSAA.Master.Application.Interfaces.Services;
 using KSAA.Master.Application.Wrappers;
 using MediatR;

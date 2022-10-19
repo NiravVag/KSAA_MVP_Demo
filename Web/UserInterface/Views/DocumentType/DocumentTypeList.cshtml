@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KSAA.Master.Application.DTOs.Master.DocumentTypeViewModel>
+﻿@model IEnumerable<KSAA.Master.Application.DTOs.Master.DocumentTypeDTOs.DocumentTypeViewModel>
 
 <!-- Row -->
 <div class="row">
@@ -64,12 +64,12 @@
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.OurSoftwareProcessing)
                                                             </td>
-                                                           @*<td>
-                                                                @Html.DisplayFor(modelItem => item.IP)
-                                                            </td>
-                                                            <td>
-                                                                @Html.DisplayFor(modelItem => item.BrowserCase)
-                                                            </td>*@
+                                                            @*<td>
+                                                        @Html.DisplayFor(modelItem => item.IP)
+                                                        </td>
+                                                        <td>
+                                                        @Html.DisplayFor(modelItem => item.BrowserCase)
+                                                        </td>*@
                                                             <td class="text-nowrap">
                                                                 <a asp-route-id="@item.Id" asp-controller="DocumentType" asp-action="GetDocument" class="mr-25" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                                 <a asp-route-id="@item.Id" asp-controller="DocumentType" asp-action="DeleteDocument" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>

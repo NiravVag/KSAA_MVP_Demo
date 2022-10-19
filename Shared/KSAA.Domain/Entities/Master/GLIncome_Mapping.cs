@@ -11,9 +11,9 @@ namespace KSAA.Domain.Entities.Master
     {
         public virtual string? GLIncomeCode { get; set; }
         public virtual string? GLIncomeDescription { get; set; }
-        public virtual string? CreatedBy { get; set; }
+        public virtual int? CreatedBy { get; set; }
         public virtual DateTime? CreatedOn { get; set; }
-        public virtual string? ModifiedBy { get; set; }
+        public virtual int? ModifiedBy { get; set; }
         public virtual DateTime? ModifiedOn { get; set; }
         public virtual IsActive IsActive { get; set; }
         public virtual string? IP { get; set; }

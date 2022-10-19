@@ -1,8 +1,15 @@
 ﻿using AutoMapper;
 using KSAA.Domain.Entities.Master;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.CompanyDTOs;
+using KSAA.Master.Application.DTOs.Master.CustomerCodeDTOs;
+using KSAA.Master.Application.DTOs.Master.DocumentTypeDTOs;
+using KSAA.Master.Application.DTOs.Master.GLIncome_MappingDTOs;
+using KSAA.Master.Application.DTOs.Master.LocationDTOs;
+using KSAA.Master.Application.DTOs.Master.PlantCodeDTOs;
+using KSAA.Master.Application.DTOs.Master.TaxCodeDTOs;
+using KSAA.Master.Application.DTOs.Master.TBTaggingDTOs;
+using KSAA.Master.Application.DTOs.Master.VendorCodeDTOs;
 using KSAA.Master.Application.Features.Commands.TaxCodeCommand;
-using KSAA.Master.Application.Features.Master.Commands;
 using KSAA.Master.Application.Features.Master.Commands.CompanyCommand;
 using KSAA.Master.Application.Features.Master.Commands.CustomerCodeCommand;
 using KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand;

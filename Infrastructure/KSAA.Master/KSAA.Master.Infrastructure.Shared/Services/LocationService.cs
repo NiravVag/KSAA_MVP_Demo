@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.LocationDTOs;
 using KSAA.Master.Application.Features.Master.Commands.LocationCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
@@ -26,8 +27,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<LocationViewModel> AddLocation(CreateLocationCommand command)
         {
             var applicationLocation = _mapper.Map<Location>(command);
+            applicationLocation.IsActive = IsActive.Active;
+            applicationLocation.CreatedBy = 0;
             applicationLocation.CreatedOn = DateTime.Now;
-            applicationLocation.IsActive = Domain.Entities.IsActive.Active;
+            applicationLocation.ModifiedBy = 0;
+            applicationLocation.ModifiedOn = DateTime.Now;
             await _LocationRepositoryAsync.AddAsync(applicationLocation);
 
             return _mapper.Map<LocationViewModel>(applicationLocation);
@@ -66,10 +70,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<LocationViewModel>(applicationLocation);
         }
 
-        public async Task<List<LocationViewModel>> GetLocationList()
+        public async Task<IEnumerable<LocationViewModel>> GetLocationList()
         {
             var LocationList = await _LocationRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<LocationViewModel>>(LocationList);
+            LocationList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<IEnumerable<LocationViewModel>>(LocationList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }

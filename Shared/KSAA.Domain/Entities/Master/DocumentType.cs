@@ -13,14 +13,14 @@ namespace KSAA.Domain.Entities.Master
         public virtual string? Document_Code { get; set; }
         public virtual string? Document_Type { get; set; }
         public virtual string? OurSoftwareProcessing { get; set; }
-        public virtual string? CreatedBy { get; set; }
+        public virtual int? CreatedBy { get; set; }
         public virtual DateTime? CreatedOn { get; set; }
-        public virtual string? ModifiedBy { get; set; }
+        public virtual int? ModifiedBy { get; set; }
         public virtual DateTime? ModifiedOn { get; set; }
-        public virtual IsActive IsActive { get; set; }
         public virtual string? IP { get; set; }
         public virtual string? BrowserCase { get; set; }
+        public virtual IsActive IsActive { get; set; }
 
     }
-
+    
 }

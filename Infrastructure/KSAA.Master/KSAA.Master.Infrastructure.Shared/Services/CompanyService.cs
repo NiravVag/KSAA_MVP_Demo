@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.CompanyDTOs;
 using KSAA.Master.Application.Features.Master.Commands.CompanyCommand;
 using KSAA.Master.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +28,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<CompanyViewModel> AddCompany(CreateCompanyCommand command)
         {
             var applicationCompany = _mapper.Map<Company>(command);
+            applicationCompany.IsActive = IsActive.Active;
+            applicationCompany.CreatedBy = 0;
             applicationCompany.CreatedOn = DateTime.Now;
-            applicationCompany.IsActive = Domain.Entities.IsActive.Active;
+            applicationCompany.ModifiedBy = 0;
+            applicationCompany.ModifiedOn = DateTime.Now;
             await _CompanyRepositoryAsync.AddAsync(applicationCompany);
 
             return _mapper.Map<CompanyViewModel>(applicationCompany);
@@ -66,10 +71,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<CompanyViewModel>(applicationCompany);
         }
 
-        public async Task<List<CompanyViewModel>> GetCompanyList()
+        public async Task<IEnumerable<CompanyViewModel>> GetCompanyList()
         {
             var CompanyList = await _CompanyRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<CompanyViewModel>>(CompanyList);
+            CompanyList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<List<CompanyViewModel>>(CompanyList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }

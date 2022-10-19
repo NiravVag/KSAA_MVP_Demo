@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.CustomerCodeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.CustomerCodeCommand;
-using KSAA.Master.Application.Interfaces.Repositories;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace KSAA.Master.Infrastructure.Shared.Services
 {
@@ -27,8 +29,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<CustomerCodeViewModel> AddCustomerCode(CreateCustomerCodeCommand command)
         {
             var applicationCustomerCode = _mapper.Map<CustomerCode>(command);
+            applicationCustomerCode.IsActive = IsActive.Active;
+            applicationCustomerCode.CreatedBy = 0;
             applicationCustomerCode.CreatedOn = DateTime.Now;
-            applicationCustomerCode.IsActive = Domain.Entities.IsActive.Active;
+            applicationCustomerCode.ModifiedBy = 0;
+            applicationCustomerCode.ModifiedOn = DateTime.Now;
             await _CustomerCodeRepositoryAsync.AddAsync(applicationCustomerCode);
 
             return _mapper.Map<CustomerCodeViewModel>(applicationCustomerCode);
@@ -67,10 +72,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<CustomerCodeViewModel>(applicationCustomerCode);
         }
 
-        public async Task<List<CustomerCodeViewModel>> GetCustomerCodeList()
+        public async Task<IEnumerable<CustomerCodeViewModel>> GetCustomerCodeList()
         {
             var CustomerCodeList = await _CustomerCodeRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<CustomerCodeViewModel>>(CustomerCodeList);
+            CustomerCodeList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<IEnumerable<CustomerCodeViewModel>>(CustomerCodeList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }

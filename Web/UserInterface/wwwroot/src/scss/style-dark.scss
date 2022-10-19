@@ -4137,9 +4137,10 @@ table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after
     display: block;
     font-family: FontAwesome;
     position: absolute;
-    right: 10px;
+    right: 0px;
     top: 15px;
 	font-size:14px;
+	white-space: nowrap;
 }
 
 table.dataTable thead .sorting,

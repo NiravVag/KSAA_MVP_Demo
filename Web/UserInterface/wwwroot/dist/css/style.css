@@ -4189,9 +4189,11 @@ table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after
   display: block;
   font-family: FontAwesome;
   position: absolute;
-  right: 10px;
+  right: 0px;
   top: 15px;
-  font-size: 14px; }
+  font-size: 14px;
+  white-space: nowrap;
+}
 
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
@@ -7357,3 +7359,7 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
     margin-bottom: 20px; } }
 
 /*# sourceMappingURL=style.css.map */
+
+.table{
+    white-space:nowrap;
+}

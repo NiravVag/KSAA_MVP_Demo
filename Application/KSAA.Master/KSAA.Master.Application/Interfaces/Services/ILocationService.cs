@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.LocationDTOs;
 using KSAA.Master.Application.Features.Master.Commands.LocationCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<LocationViewModel> EditLocation(UpdateLocationCommand command);
 
-        Task<List<LocationViewModel>> GetLocationList();
+        Task<IEnumerable<LocationViewModel>> GetLocationList();
 
         Task<LocationViewModel> GetLocationById(long id);
 

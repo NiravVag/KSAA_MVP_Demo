@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.CompanyDTOs;
 using KSAA.Master.Application.Interfaces.Services;
 using KSAA.Master.Application.Wrappers;
 using MediatR;
@@ -28,7 +28,6 @@ namespace KSAA.Master.Application.Features.Master.Queries.CompanyQueries
         public async Task<Response<IEnumerable<CompanyViewModel>>> Handle(GetAllCompanyQuery request, CancellationToken cancellationToken)
         {
             var CompanyList = await _CompanyService.GetCompanyList();
-
             return new Response<IEnumerable<CompanyViewModel>>(CompanyList);
         }
     }

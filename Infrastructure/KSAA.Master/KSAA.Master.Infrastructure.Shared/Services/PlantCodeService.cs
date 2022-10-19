@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.PlantCodeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.PlantCodeCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
@@ -26,8 +27,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<PlantCodeViewModel> AddPlantCode(CreatePlantCodeCommand command)
         {
             var applicationPlantCode = _mapper.Map<PlantCode>(command);
+            applicationPlantCode.IsActive = IsActive.Active;
+            applicationPlantCode.CreatedBy = 0;
             applicationPlantCode.CreatedOn = DateTime.Now;
-            applicationPlantCode.IsActive = Domain.Entities.IsActive.Active;
+            applicationPlantCode.ModifiedBy = 0;
+            applicationPlantCode.ModifiedOn = DateTime.Now;
             await _PlantCodeRepositoryAsync.AddAsync(applicationPlantCode);
 
             return _mapper.Map<PlantCodeViewModel>(applicationPlantCode);
@@ -66,10 +70,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<PlantCodeViewModel>(applicationPlantCode);
         }
 
-        public async Task<List<PlantCodeViewModel>> GetPlantCodeList()
+        public async Task<IEnumerable<PlantCodeViewModel>> GetPlantCodeList()
         {
             var PlantCodeList = await _PlantCodeRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<PlantCodeViewModel>>(PlantCodeList);
+            PlantCodeList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<List<PlantCodeViewModel>>(PlantCodeList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }
