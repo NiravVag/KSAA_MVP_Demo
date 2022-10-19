@@ -1,7 +1,6 @@
 ﻿using KSAA.DAL;
 using KSAA.Domain.Common;
-using KSAA.Domain.Entities;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.CompanyDTOs;
 using KSAA.User.Application.DTOs.Role;
 using KSAA.User.Application.DTOs.User;
 using KSAA.User.Application.Wrappers;

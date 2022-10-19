@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.DocumentTypeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.DocumentTypeCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<DocumentTypeViewModel> EditDocumentType(UpdateDocumentTypeCommand command);
 
-        Task<List<DocumentTypeViewModel>> GetDocumentTypeList();
+        Task<IEnumerable<DocumentTypeViewModel>> GetDocumentTypeList();
 
         Task<DocumentTypeViewModel> GetDocumentTypeById(long id);
 

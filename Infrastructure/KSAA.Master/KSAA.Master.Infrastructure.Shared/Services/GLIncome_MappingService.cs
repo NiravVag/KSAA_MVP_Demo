@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.GLIncome_MappingDTOs;
 using KSAA.Master.Application.Features.Master.Commands.GLIncome_MappingCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
@@ -26,8 +27,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<GLIncome_MappingViewModel> AddGLIncome_Mapping(CreateGLIncome_MappingCommand command)
         {
             var applicationGLIncome_Mapping = _mapper.Map<GLIncome_Mapping>(command);
+            applicationGLIncome_Mapping.IsActive = IsActive.Active;
+            applicationGLIncome_Mapping.CreatedBy = 0;
             applicationGLIncome_Mapping.CreatedOn = DateTime.Now;
-            applicationGLIncome_Mapping.IsActive = Domain.Entities.IsActive.Active;
+            applicationGLIncome_Mapping.ModifiedBy = 0;
+            applicationGLIncome_Mapping.ModifiedOn = DateTime.Now;
             await _GLIncome_MappingRepositoryAsync.AddAsync(applicationGLIncome_Mapping);
 
             return _mapper.Map<GLIncome_MappingViewModel>(applicationGLIncome_Mapping);
@@ -66,10 +70,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<GLIncome_MappingViewModel>(applicationGLIncome_Mapping);
         }
 
-        public async Task<List<GLIncome_MappingViewModel>> GetGLIncome_MappingList()
+        public async Task<IEnumerable<GLIncome_MappingViewModel>> GetGLIncome_MappingList()
         {
-            var GLIncome_MappingList = await _GLIncome_MappingRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<GLIncome_MappingViewModel>>(GLIncome_MappingList);
+            var glIncome_MappingList = await _GLIncome_MappingRepositoryAsync.GetAllAsync();
+            glIncome_MappingList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<List<GLIncome_MappingViewModel>>(glIncome_MappingList).Where(x=>x.IsActive != IsActive.Delete);
 
         }
     }

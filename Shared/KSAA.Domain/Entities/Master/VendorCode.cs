@@ -14,9 +14,9 @@ namespace KSAA.Domain.Entities.Master
         public virtual string? Name { get; set; }
         public virtual string? Location { get; set; }
         public virtual string? Address { get; set; }
-        public virtual string? CreatedBy { get; set; }
+        public virtual int? CreatedBy { get; set; }
         public virtual DateTime? CreatedOn { get; set; }
-        public virtual string? ModifiedBy { get; set; }
+        public virtual int? ModifiedBy { get; set; }
         public virtual DateTime? ModifiedOn { get; set; }
         public virtual IsActive IsActive { get; set; }
         public virtual string? IP { get; set; }

@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.CustomerCodeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.CustomerCodeCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<CustomerCodeViewModel> EditCustomerCode(UpdateCustomerCodeCommand command);
 
-        Task<List<CustomerCodeViewModel>> GetCustomerCodeList();
+        Task<IEnumerable<CustomerCodeViewModel>> GetCustomerCodeList();
 
         Task<CustomerCodeViewModel> GetCustomerCodeById(long id);
 

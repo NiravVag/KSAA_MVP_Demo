@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.VendorCodeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.VendorCodeCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
@@ -26,8 +27,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<VendorCodeViewModel> AddVendorCode(CreateVendorCodeCommand command)
         {
             var applicationVendorCode = _mapper.Map<VendorCode>(command);
+            applicationVendorCode.IsActive = IsActive.Active;
+            applicationVendorCode.CreatedBy = 0;
             applicationVendorCode.CreatedOn = DateTime.Now;
-            applicationVendorCode.IsActive = Domain.Entities.IsActive.Active;
+            applicationVendorCode.ModifiedBy = 0;
+            applicationVendorCode.ModifiedOn = DateTime.Now;
             await _VendorCodeRepositoryAsync.AddAsync(applicationVendorCode);
 
             return _mapper.Map<VendorCodeViewModel>(applicationVendorCode);
@@ -66,10 +70,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<VendorCodeViewModel>(applicationVendorCode);
         }
 
-        public async Task<List<VendorCodeViewModel>> GetVendorCodeList()
+        public async Task<IEnumerable<VendorCodeViewModel>> GetVendorCodeList()
         {
             var VendorCodeList = await _VendorCodeRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<VendorCodeViewModel>>(VendorCodeList);
+            VendorCodeList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<List<VendorCodeViewModel>>(VendorCodeList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }

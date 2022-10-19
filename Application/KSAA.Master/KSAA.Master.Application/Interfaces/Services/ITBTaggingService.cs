@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.TBTaggingDTOs;
 using KSAA.Master.Application.Features.Master.Commands.TBTaggingCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<TBTaggingViewModel> EditTBTagging(UpdateTBTaggingCommand command);
 
-        Task<List<TBTaggingViewModel>> GetTBTaggingList();
+        Task<IEnumerable<TBTaggingViewModel>> GetTBTaggingList();
 
         Task<TBTaggingViewModel> GetTBTaggingById(long id);
 

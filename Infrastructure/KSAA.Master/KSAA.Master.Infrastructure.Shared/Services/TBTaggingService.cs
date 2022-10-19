@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.TBTaggingDTOs;
 using KSAA.Master.Application.Features.Master.Commands.TBTaggingCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
@@ -26,8 +27,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<TBTaggingViewModel> AddTBTagging(CreateTBTaggingCommand command)
         {
             var applicationTBTagging = _mapper.Map<TBTagging>(command);
+            applicationTBTagging.IsActive = IsActive.Active;
+            applicationTBTagging.CreatedBy = 0;
             applicationTBTagging.CreatedOn = DateTime.Now;
-            applicationTBTagging.IsActive = Domain.Entities.IsActive.Active;
+            applicationTBTagging.ModifiedBy = 0;
+            applicationTBTagging.ModifiedOn = DateTime.Now;
             await _TBTaggingRepositoryAsync.AddAsync(applicationTBTagging);
 
             return _mapper.Map<TBTaggingViewModel>(applicationTBTagging);
@@ -66,10 +70,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<TBTaggingViewModel>(applicationTBTagging);
         }
 
-        public async Task<List<TBTaggingViewModel>> GetTBTaggingList()
+        public async Task<IEnumerable<TBTaggingViewModel>> GetTBTaggingList()
         {
             var TBTaggingList = await _TBTaggingRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<TBTaggingViewModel>>(TBTaggingList);
+            TBTaggingList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<List<TBTaggingViewModel>>(TBTaggingList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }

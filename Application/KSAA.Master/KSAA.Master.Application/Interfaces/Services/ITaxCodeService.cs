@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.TaxCodeDTOs;
 using KSAA.Master.Application.Features.Commands.TaxCodeCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<TaxCodeViewModel> EditTaxCode(UpdateTaxCodeCommand command);
 
-        Task<List<TaxCodeViewModel>> GetTaxCodeList();
+        Task<IEnumerable<TaxCodeViewModel>> GetTaxCodeList();
 
         Task<TaxCodeViewModel> GetTaxCodeById(long id);
 

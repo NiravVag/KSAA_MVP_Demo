@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using KSAA.Domain.Entities;
 using KSAA.Domain.Entities.Master;
 using KSAA.Domain.Interfaces.Repositories;
-using KSAA.Master.Application.DTOs.Master;
+using KSAA.Master.Application.DTOs.Master.TaxCodeDTOs;
 using KSAA.Master.Application.Features.Commands.TaxCodeCommand;
 using KSAA.Master.Application.Interfaces.Services;
 using System;
@@ -26,8 +27,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
         public async Task<TaxCodeViewModel> AddTaxCode(CreateTaxCodeCommand command)
         {
             var applicationTaxCode = _mapper.Map<TaxCode>(command);
+            applicationTaxCode.IsActive = IsActive.Active;
+            applicationTaxCode.CreatedBy = 0;
             applicationTaxCode.CreatedOn = DateTime.Now;
-            applicationTaxCode.IsActive = Domain.Entities.IsActive.Active;
+            applicationTaxCode.ModifiedBy = 0;
+            applicationTaxCode.ModifiedOn = DateTime.Now;
             await _taxCodeRepositoryAsync.AddAsync(applicationTaxCode);
 
             return _mapper.Map<TaxCodeViewModel>(applicationTaxCode);
@@ -66,10 +70,11 @@ namespace KSAA.Master.Infrastructure.Shared.Services
             return _mapper.Map<TaxCodeViewModel>(applicationTaxCode);
         }
 
-        public async Task<List<TaxCodeViewModel>> GetTaxCodeList()
+        public async Task<IEnumerable<TaxCodeViewModel>> GetTaxCodeList()
         {
             var TaxCodeList = await _taxCodeRepositoryAsync.GetAllAsync();
-            return _mapper.Map<List<TaxCodeViewModel>>(TaxCodeList);
+            TaxCodeList.OrderByDescending(x => x.Id).ToList();
+            return _mapper.Map<List<TaxCodeViewModel>>(TaxCodeList).Where(x => x.IsActive != IsActive.Delete);
 
         }
     }

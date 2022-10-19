@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.GLIncome_MappingDTOs;
 using KSAA.Master.Application.Features.Master.Commands.GLIncome_MappingCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<GLIncome_MappingViewModel> EditGLIncome_Mapping(UpdateGLIncome_MappingCommand command);
 
-        Task<List<GLIncome_MappingViewModel>> GetGLIncome_MappingList();
+        Task<IEnumerable<GLIncome_MappingViewModel>> GetGLIncome_MappingList();
 
         Task<GLIncome_MappingViewModel> GetGLIncome_MappingById(long id);
 

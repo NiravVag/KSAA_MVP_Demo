@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.VendorCodeDTOs;
 using KSAA.Master.Application.Features.Master.Commands.VendorCodeCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<VendorCodeViewModel> EditVendorCode(UpdateVendorCodeCommand command);
 
-        Task<List<VendorCodeViewModel>> GetVendorCodeList();
+        Task<IEnumerable<VendorCodeViewModel>> GetVendorCodeList();
 
         Task<VendorCodeViewModel> GetVendorCodeById(long id);
 

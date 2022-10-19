@@ -1,4 +1,4 @@
-﻿using KSAA.Master.Application.DTOs.Master;
+﻿using KSAA.Master.Application.DTOs.Master.CompanyDTOs;
 using KSAA.Master.Application.Features.Master.Commands.CompanyCommand;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace KSAA.Master.Application.Interfaces.Services
 
         Task<CompanyViewModel> EditCompany(UpdateCompanyCommand command);
 
-        Task<List<CompanyViewModel>> GetCompanyList();
+        Task<IEnumerable<CompanyViewModel>> GetCompanyList();
 
         Task<CompanyViewModel> GetCompanyById(long id);
 
